@@ -20,14 +20,14 @@ hr{width:100%;max-width:1173px;border:0;border-top:.2em solid var(--accent);marg
 .block h2{max-width:800px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
 figure{margin:0}
-figure img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;cursor:zoom-in}
+figure img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;display:block;cursor:zoom-in}
 figcaption{padding:.5rem 0;font-size:.9em}
 figcaption strong{display:block;font-size:1.1em}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;font-size:1.25em;max-width:1200px;margin:auto}
 .cols ul{margin:0;padding-left:1.2em}
 .cols p{font-weight:300;line-height:1.5}
 .flight{align-items:center}
-.flight img{width:100%;max-height:600px;object-fit:cover}
+.flight img{width:100%;height:auto;max-height:600px;object-fit:cover}
 dl{display:grid;grid-template-columns:1fr auto;gap:.3rem 1.5rem;font-weight:700;margin:0}
 dd{margin:0;font-weight:400}
 .contact{max-width:800px;margin:auto;padding-top:8vh}
