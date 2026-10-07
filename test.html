@@ -16,16 +16,9 @@ html,body{height:100%;margin:0;background:#1b2024}
   stroke-dasharray:1;stroke-dashoffset:1;opacity:0;animation:draw var(--t) cubic-bezier(.45,.05,.4,1) var(--d) both}
 @keyframes draw{0%{stroke-dashoffset:1;opacity:0}2%{opacity:1}100%{stroke-dashoffset:0;opacity:1}}
 @media(prefers-reduced-motion:reduce){.sig path{animation:none;stroke-dashoffset:0;opacity:1}}
-.role{margin:0;display:flex;align-items:center;color:var(--ink);font-family:'Bodoni Moda',Didot,'Bodoni 72',Georgia,serif;font-weight:400;
-  font-size:4.3cqi;line-height:1;letter-spacing:.42em;margin-top:-9.5cqi;position:relative;text-transform:uppercase;text-shadow:0 1px 12px rgba(0,0,0,.55);
+.role{margin:0;padding-left:.42em;color:var(--ink);font-family:'Bodoni Moda',Didot,'Bodoni 72',Georgia,serif;font-weight:400;
+  font-size:4.3cqi;line-height:1;letter-spacing:.42em;margin-top:-7cqi;position:relative;text-transform:uppercase;text-shadow:0 1px 12px rgba(0,0,0,.55);
   opacity:0;animation:rise 1.4s ease-out 5.4s both}
-/* hairlines: the text carries .42em of trailing tracking, so the left rule gets the same extra space */
-.role::before,.role::after{content:"";width:4.5cqi;height:1px;background:currentColor;opacity:.85;
-  box-shadow:0 1px 8px rgba(0,0,0,.4);animation:line 1.1s cubic-bezier(.2,.7,.2,1) 5.9s both}
-.role::before{margin-right:calc(2cqi + .42em);transform-origin:right}
-.role::after{margin-left:2cqi;transform-origin:left}
-@keyframes line{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-@media(prefers-reduced-motion:reduce){.role::before,.role::after{animation:none}}
 @keyframes rise{from{opacity:0;transform:translateY(.4em)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.role{animation:none;opacity:1}}
 .replay{position:absolute;right:max(16px,3vw);bottom:max(16px,3vh);display:inline-flex;align-items:center;gap:.5em;
