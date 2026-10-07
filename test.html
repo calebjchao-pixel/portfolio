@@ -18,8 +18,8 @@ html,body{height:100%;margin:0;background:#1b2024}
 @media(prefers-reduced-motion:reduce){.sig path{animation:none;stroke-dashoffset:0;opacity:1}}
 .role{margin:0;width:100%;text-align:center;color:var(--ink);font-family:'Unbounded','Helvetica Neue',Arial,sans-serif;font-weight:400;
   font-size:4.3cqi;line-height:1;letter-spacing:.42em;margin-top:-7cqi;position:relative;text-transform:uppercase;text-shadow:0 1px 12px rgba(0,0,0,.55);
-  /* the C's left stroke is the clip edge: the title is hidden "behind" it and slides out to the right */
-  clip-path:inset(-1em 0 -1em 3.2cqi)}
+  /* clip edge = tip of the C's tail (x 147.9 of viewBox 99.6..289.3, plus half the stroke): the title is invisible until it passes it */
+  clip-path:inset(-1em 0 -1em 26.2cqi)}
 .role span{display:inline-block;padding-left:.42em;animation:slide 1.7s cubic-bezier(.22,.8,.25,1) 5.1s both}
 @keyframes slide{from{transform:translateX(-66cqi)}to{transform:none}}
 @media(prefers-reduced-motion:reduce){.role span{animation:none}}
