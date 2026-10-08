@@ -73,7 +73,8 @@ p{margin:0 0 1em;max-width:62ch}
 .btn:hover{background:var(--near-black);border-color:var(--near-black);text-decoration:none}
 
 /* hero */
-.hero{min-height:88svh;background:linear-gradient(rgba(10,14,18,.35),rgba(10,14,18,.35)),url(img/hero-test.jpg) center 45%/cover no-repeat;
+/* hero fills the first screen exactly (svh keeps it right under mobile browser bars) */
+.hero{min-height:100vh;min-height:100svh;background:linear-gradient(rgba(10,14,18,.35),rgba(10,14,18,.35)),url(img/hero-lake.webp) center 50%/cover no-repeat;
   display:grid;place-items:center;padding:var(--gut)}
 .title{width:min(90vw,760px);container-type:inline-size;display:grid;justify-items:center}
 .hero h1{width:100%;line-height:0;text-decoration:none}
