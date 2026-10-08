@@ -106,6 +106,9 @@ p{margin:0 0 1em;max-width:62ch}
 .rail .pcard,.card a,.dcard{text-decoration:none;color:inherit;display:block}
 .card a:hover,.dcard:hover{text-decoration:none}
 .rail img,.card img{width:100%;aspect-ratio:3/2;object-fit:cover}
+/* stand-in for a project whose photo hasn't been added yet */
+.rail .ph{width:100%;aspect-ratio:3/2;display:grid;place-items:center;color:var(--dim);font-size:.85rem;letter-spacing:.06em;
+  background:repeating-linear-gradient(45deg,transparent 0 11px,rgba(79,106,93,.12) 11px 12px),var(--warm-stone)}
 .cap{display:block;padding-top:.8rem}
 .cap h3{transition:color .2s}
 .card a:hover h3{color:var(--accent)}
