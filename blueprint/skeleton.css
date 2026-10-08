@@ -160,8 +160,8 @@ p{margin:0 0 1em;max-width:62ch}
 .about-photo{left:21%;top:7.45%;width:58%;height:auto;aspect-ratio:2/3;z-index:1;border-radius:3.4cqi}
 .about-tile{height:auto;aspect-ratio:3/2;z-index:2;box-shadow:0 1.6cqi 4cqi -1.2cqi rgba(19,32,26,.45)}
 .about-tile.t1{left:56%;top:0;width:42%;border-radius:3cqi}
-.about-tile.t3{left:2%;top:8.51%;width:28%;border-radius:2.3cqi}
-.about-tile.t2{left:0;top:65.96%;width:32%;border-radius:2.5cqi}
+.about-tile.t3{left:2%;top:8.51%;width:34%;border-radius:2.6cqi}
+.about-tile.t2{left:0;top:65.96%;width:38%;border-radius:2.8cqi}
 .about-card{position:relative;z-index:3;align-self:end;margin:0 0 4.5cqw -15.6cqw;
   padding:clamp(1.6rem,3.5vw,2.6rem);border-radius:1.25rem;background:var(--slate);color:var(--cream);
   box-shadow:0 24px 50px -20px rgba(19,32,26,.45)}
@@ -180,7 +180,7 @@ p{margin:0 0 1em;max-width:62ch}
   /* narrower screens: stack, with the card overlapping the headshot's foot; the hills sit a little higher */
   .about-wrap{grid-template-columns:1fr}
   .about-collage{width:min(100%,560px);justify-self:center}
-  .about-tile.t2{top:58.51%}
+  .about-tile.t2{top:56.38%}
   /* card tracks the collage width (min(100cqw,560px)) and overlaps only its bottom 12%, which clears the hills photo */
   .about-card{align-self:auto;justify-self:center;width:calc(min(100cqw,560px) * .88);margin:calc(min(100cqw,560px) * -.12) 0 0}
 }
