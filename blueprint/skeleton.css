@@ -237,3 +237,11 @@ p{margin:0 0 1em;max-width:62ch}
 .lb-x{top:1rem;right:1rem}
 .lb-prev{left:1rem;top:50%;transform:translateY(-50%)}
 .lb-next{right:1rem;top:50%;transform:translateY(-50%)}
+
+/* about photos: start pushed out toward their own corner, tilted and faded; settle in turn once the headshot is fully in view */
+.band.about{overflow-x:clip}  /* photos start outside the collage; never let that widen the page */
+.about-anim .about-tile{opacity:0;transition:opacity .5s ease-out,transform .9s cubic-bezier(.2,.85,.25,1.12)}
+.about-anim .about-tile.t3{transform:translate(-14cqi,-10cqi) rotate(-7deg)}
+.about-anim .about-tile.t1{transform:translate(14cqi,-10cqi) rotate(6deg);transition-delay:.12s}
+.about-anim .about-tile.t2{transform:translate(-14cqi,10cqi) rotate(5deg);transition-delay:.24s}
+.about-anim.in .about-tile{opacity:1;transform:none}
