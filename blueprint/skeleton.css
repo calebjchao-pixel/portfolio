@@ -212,17 +212,20 @@ p{margin:0 0 1em;max-width:62ch}
 .cphotos .ph{width:100%;aspect-ratio:3/1;border-radius:.9rem}
 
 /* ---- gallery: favorites mosaic ---- */
-.mosaic{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:clamp(110px,13.5vw,190px);grid-auto-flow:row dense;gap:clamp(.5rem,1.2vw,.85rem)}
-.mosaic .m{grid-column:span 2;display:block;overflow:hidden;border-radius:.7rem;background:var(--warm-stone)}
-.mosaic .m.big{grid-column:span 4;grid-row:span 2}
+/* every tile holds 3:2 at any width: small tiles set the row height from their own width, and each large
+   feature (4 cols x 2 rows) takes no height of its own (contain:size) and stretches over the two rows */
+.mosaic{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-flow:row dense;gap:clamp(.5rem,1.2vw,.85rem)}
+.mosaic .m{grid-column:span 2;display:block;aspect-ratio:3/2;overflow:hidden;border-radius:.7rem;background:var(--warm-stone)}
+.mosaic .m.big{grid-column:span 4;grid-row:span 2;aspect-ratio:auto;contain:size}
 .mosaic .m.big.r{grid-column:3 / span 4}
 .mosaic img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
 .mosaic .m:hover img{transform:scale(1.04)}
 .mosaic .m:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
 @media(max-width:640px){
-  .mosaic{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:28vw}
+  .mosaic{grid-template-columns:repeat(2,minmax(0,1fr))}
   .mosaic .m{grid-column:span 1}
-  .mosaic .m.big,.mosaic .m.big.r{grid-column:1 / -1;grid-row:span 2}
+  /* on phones a feature sits on its own full-width row, so it sets its own 3:2 height */
+  .mosaic .m.big,.mosaic .m.big.r{grid-column:1 / -1;grid-row:auto;aspect-ratio:3/2;contain:none}
 }
 
 /* ---- photo viewer ---- */
