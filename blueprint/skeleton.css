@@ -155,7 +155,7 @@ p{margin:0 0 1em;max-width:62ch}
 .about-photo{left:21%;top:7.45%;width:58%;height:auto;aspect-ratio:2/3;z-index:1;border-radius:3.4cqi}
 .about-tile{height:auto;aspect-ratio:3/2;z-index:2;box-shadow:0 1.6cqi 4cqi -1.2cqi rgba(19,32,26,.45)}
 .about-tile.t1{left:56%;top:0;width:42%;border-radius:3cqi}
-.about-tile.t3{left:4%;top:12.77%;width:22%;border-radius:2cqi}
+.about-tile.t3{left:2%;top:8.51%;width:28%;border-radius:2.3cqi}
 .about-tile.t2{left:0;top:65.96%;width:32%;border-radius:2.5cqi}
 .about-card{position:relative;z-index:3;margin:0 0 4.5cqw -15.6cqw;
   padding:clamp(1.6rem,3.5vw,2.6rem);border-radius:1.25rem;background:var(--slate);color:var(--cream);
