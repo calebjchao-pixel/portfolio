@@ -33,17 +33,24 @@ p{margin:0 0 1em;max-width:62ch}
 .dim,.cap p,.stats dt,.logrow span:last-child{color:var(--dim)}
 .tag{display:block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:.35rem}
 .more{font-size:.95rem}
-.page-top{padding:clamp(2.5rem,6vw,4.5rem) var(--gut) 0;text-align:center}
+.page-top{padding:clamp(1.5rem,4vw,3rem) var(--gut) 0;text-align:center}
 .page-top p{margin:1em auto 0;color:var(--dim)}
 
 /* chrome, as the original: blue-grey logo and links, thick accent rule on top */
-.bar-nav{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
-  padding:.9rem var(--gut);background:rgba(243,239,234,.92);backdrop-filter:blur(8px);border-top:6px solid var(--chrome);border-bottom:1px solid var(--rule)}
-.mark{font-family:var(--display);font-weight:500;font-size:1.05rem;color:var(--chrome);text-decoration:none}
-.mark:hover{text-decoration:none;color:var(--link-hover)}
-.bar-nav ul{display:flex;flex-wrap:wrap;gap:.4rem clamp(.9rem,2.5vw,2rem);margin:0;padding:0;list-style:none;font-size:.95rem}
-.bar-nav li a{color:var(--chrome);text-decoration:none;padding-bottom:3px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
-.bar-nav li a:hover,.bar-nav li a[aria-current]{color:var(--link-hover);border-bottom-color:var(--accent)}
+/* invisible header: no bar, no rule, no background; just the logo lockup and the page links */
+.bar-nav{position:relative;z-index:5;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem 2rem;flex-wrap:wrap;
+  padding:clamp(1rem,2.4vw,1.6rem) var(--gut);color:var(--ink)}
+.bar-nav.over{position:absolute;top:0;left:0;right:0;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.45)}
+.logo{display:grid;justify-items:center;width:clamp(104px,12vw,150px);container-type:inline-size;color:inherit;text-decoration:none}
+.logo:hover{text-decoration:none}
+.logo-sig{width:100%;height:auto;overflow:visible}
+.logo-sig path{fill:none;stroke:currentColor;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.over .logo-sig{filter:drop-shadow(0 1px 6px rgba(0,0,0,.45))}
+.logo-role{margin-top:1cqi;padding-left:.36em;font-family:var(--display);font-size:7.2cqi;line-height:1;letter-spacing:.36em;text-transform:uppercase;white-space:nowrap}
+.bar-nav ul{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.4rem clamp(.9rem,2.5vw,2rem);margin:0;padding:.3rem 0 0;list-style:none;font-size:.95rem}
+.bar-nav li a{color:inherit;text-decoration:none;padding-bottom:3px;border-bottom:1px solid transparent;transition:opacity .2s,border-color .2s}
+.bar-nav li a:hover{opacity:.7}
+.bar-nav li a[aria-current]{border-bottom-color:currentColor}
 
 /* bands */
 .band{padding:var(--band) var(--gut);border-bottom:1px solid var(--rule)}
@@ -114,7 +121,7 @@ p{margin:0 0 1em;max-width:62ch}
 /* footer: beige with the accent rule on top, as the original's border */
 .foot{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1.4rem clamp(1rem,4vw,3rem);
   padding:clamp(2.5rem,6vw,4rem) var(--gut) 2.5rem;background:var(--slate);color:var(--mist);font-size:.95rem}
-.foot .mark{display:inline-block;margin-bottom:.3rem;color:var(--cream)}
+.foot .mark{display:inline-block;margin-bottom:.3rem;font-family:var(--display);font-weight:500;font-size:1.05rem;color:var(--cream)}
 .foot nav{display:grid;gap:.4rem}
 .foot a{color:var(--cream);text-decoration:none}
 .foot a:hover{color:var(--white);text-decoration:underline}
