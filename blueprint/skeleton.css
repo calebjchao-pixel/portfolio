@@ -62,9 +62,10 @@ p{margin:0 0 1em;max-width:62ch}
   stroke-dasharray:1;stroke-dashoffset:1;opacity:0;animation:draw 4.4s cubic-bezier(.3,.35,.4,1) 2.3s both}
 .sig path:first-child{animation:draw 2.2s cubic-bezier(.45,.05,.4,1) 0s both}
 @keyframes draw{0%{stroke-dashoffset:1;opacity:0}2%{opacity:1}100%{stroke-dashoffset:0;opacity:1}}
+/* the mask stays put on .role (clip edge = tip of the C's tail); only the inner span slides, so the text is revealed as it passes */
 .role{margin:-7cqi 0 0;width:100%;text-align:center;color:#fff;font-family:var(--display);font-size:4.3cqi;line-height:1;letter-spacing:.42em;
-  text-transform:uppercase;padding-left:.42em;text-shadow:0 1px 12px rgba(0,0,0,.55);
-  clip-path:inset(-1em 0 -1em 26.2cqi);animation:slide 1.7s cubic-bezier(.22,.8,.25,1) 6.7s both}
+  text-transform:uppercase;text-shadow:0 1px 12px rgba(0,0,0,.55);clip-path:inset(-1em 0 -1em 26.2cqi)}
+.role span{display:inline-block;padding-left:.42em;animation:slide 1.7s cubic-bezier(.22,.8,.25,1) 6.7s both}
 @keyframes slide{from{transform:translateX(-66cqi)}to{transform:none}}
 
 /* project rail (Gallery6 layout) */
@@ -122,4 +123,4 @@ p{margin:0 0 1em;max-width:62ch}
 
 @media(max-width:780px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.split,.g2{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
 @media(max-width:460px){.g3,.g4{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sig path{animation:none;stroke-dashoffset:0;opacity:1}.role{animation:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sig path{animation:none;stroke-dashoffset:0;opacity:1}.role span{animation:none}}
