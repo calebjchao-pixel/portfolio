@@ -103,8 +103,8 @@ p{margin:0 0 1em;max-width:62ch}
 .rail>li{flex:0 0 min(78vw,452px);scroll-snap-align:start}
 
 /* cards and photos: plain, no frames, like the original galleries */
-.rail .pcard,.card a,.dcard{text-decoration:none;color:inherit;display:block}
-.card a:hover,.dcard:hover{text-decoration:none}
+.rail .pcard,.card a{text-decoration:none;color:inherit;display:block}
+.card a:hover{text-decoration:none}
 .rail img,.card img{width:100%;aspect-ratio:3/2;object-fit:cover}
 /* stand-in for a project whose photo hasn't been added yet */
 .rail .ph{width:100%;aspect-ratio:3/2;display:grid;place-items:center;color:var(--dim);font-size:.85rem;letter-spacing:.06em;
@@ -117,9 +117,6 @@ p{margin:0 0 1em;max-width:62ch}
 .g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(.8rem,1.8vw,1.4rem)}
 .g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(.8rem,1.8vw,1.4rem)}
 .photos img{width:100%;aspect-ratio:3/2;object-fit:cover}
-.dirgrid img{width:100%;aspect-ratio:3/4;object-fit:cover}
-.dcard span{display:block;padding-top:.7rem;font-family:var(--display);font-weight:500;font-size:.98rem;transition:color .2s}
-.dcard:hover span{color:var(--accent)}
 .split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
 .portrait{width:100%;aspect-ratio:4/5;object-fit:cover}
 
