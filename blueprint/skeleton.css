@@ -41,7 +41,7 @@ p{margin:0 0 1em;max-width:62ch}
 .bar-nav{position:relative;z-index:5;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem 2rem;flex-wrap:wrap;
   padding:clamp(1rem,2.4vw,1.6rem) var(--gut);color:var(--ink)}
 /* home: hidden over the hero, slides down once the hero has scrolled away (header.js toggles .show) */
-.bar-nav.over{position:fixed;top:0;left:0;right:0;background:rgba(243,239,234,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+.bar-nav.over{position:fixed;top:0;left:0;right:0;background:none;
   transform:translateY(-100%);visibility:hidden;transition:transform .45s cubic-bezier(.2,.7,.2,1),visibility 0s linear .45s}
 .bar-nav.over.show{transform:none;visibility:visible;transition:transform .45s cubic-bezier(.2,.7,.2,1),visibility 0s}
 .bar-nav.over{padding-block:.7rem;align-items:center}
