@@ -147,14 +147,17 @@ p{margin:0 0 1em;max-width:62ch}
    left edge, bottom-left), and the profile card overlapping its lower right so text and photo read as one unit.
    Collage positions are percentages of the collage box; the card's overlap is in units of the wrap (cqw). */
 .about-wrap{container-type:inline-size;display:grid;grid-template-columns:minmax(0,58fr) minmax(0,42fr);align-items:end;max-width:1180px;margin:0 auto}
-.about-collage{position:relative;width:100%;aspect-ratio:1/1.07;container-type:inline-size}
+/* Pinwheel around the headshot, three sizes: large bridge over the top-right corner, small train at the
+   top-left, medium hills across the lower-left edge; the card takes the lower right. Nothing covers the face.
+   Box height = headshot bottom (0.94 of the box width); tops are % of that height. */
+.about-collage{position:relative;width:100%;aspect-ratio:1/.94;container-type:inline-size}
 .about-photo,.about-tile{position:absolute;display:block;object-fit:cover}
-.about-photo{left:21%;top:6.54%;width:58%;height:auto;aspect-ratio:2/3;z-index:1;border-radius:3.4cqi}
-.about-tile{width:30%;height:auto;aspect-ratio:3/2;z-index:2;border-radius:2.6cqi;box-shadow:0 1.6cqi 4cqi -1.2cqi rgba(19,32,26,.45)}
-.about-tile.t1{left:64%;top:0}
-.about-tile.t2{left:0;top:18.69%}
-.about-tile.t3{left:8%;top:81.31%}
-.about-card{position:relative;z-index:3;margin:0 0 12cqw -15.6cqw;
+.about-photo{left:21%;top:7.45%;width:58%;height:auto;aspect-ratio:2/3;z-index:1;border-radius:3.4cqi}
+.about-tile{height:auto;aspect-ratio:3/2;z-index:2;box-shadow:0 1.6cqi 4cqi -1.2cqi rgba(19,32,26,.45)}
+.about-tile.t1{left:56%;top:0;width:42%;border-radius:3cqi}
+.about-tile.t3{left:4%;top:12.77%;width:22%;border-radius:2cqi}
+.about-tile.t2{left:0;top:65.96%;width:32%;border-radius:2.5cqi}
+.about-card{position:relative;z-index:3;margin:0 0 4.5cqw -15.6cqw;
   padding:clamp(1.6rem,3.5vw,2.6rem);border-radius:1.25rem;background:var(--slate);color:var(--cream);
   box-shadow:0 24px 50px -20px rgba(19,32,26,.45)}
 .about-card h2{margin:0 0 .35rem;color:var(--cream)}
@@ -162,11 +165,8 @@ p{margin:0 0 1em;max-width:62ch}
 .about-card p:last-child{margin-bottom:0}
 .about-card .about-role{margin:0 0 1.2rem;color:var(--mist);font-size:.92rem}
 @media(max-width:780px){
-  /* phones: the headshot's foot is kept clear so the card can overlap it; the bottom photo moves to the right edge */
+  /* phones: the card overlaps the headshot's foot, so the hills sit a little higher */
   .about-wrap{grid-template-columns:1fr}
-  .about-collage{aspect-ratio:1/.94}
-  .about-photo{top:7.45%}
-  .about-tile.t2{top:21.28%}
-  .about-tile.t3{left:70%;top:55.3%}
+  .about-tile.t2{top:58.51%}
   .about-card{margin:-12% 6% 0}
 }
