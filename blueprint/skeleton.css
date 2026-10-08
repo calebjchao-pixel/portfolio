@@ -159,7 +159,7 @@ p{margin:0 0 1em;max-width:62ch}
 .about-tile.t1{left:56%;top:0;width:42%;border-radius:3cqi}
 .about-tile.t3{left:2%;top:8.51%;width:28%;border-radius:2.3cqi}
 .about-tile.t2{left:0;top:65.96%;width:32%;border-radius:2.5cqi}
-.about-card{position:relative;z-index:3;align-self:start;margin:19cqw 0 0 -15.6cqw;
+.about-card{position:relative;z-index:3;align-self:end;margin:0 0 4.5cqw -15.6cqw;
   padding:clamp(1.6rem,3.5vw,2.6rem);border-radius:1.25rem;background:var(--slate);color:var(--cream);
   box-shadow:0 24px 50px -20px rgba(19,32,26,.45)}
 .about-card h2{margin:0 0 .35rem;color:var(--cream)}
