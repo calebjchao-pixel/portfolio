@@ -106,8 +106,8 @@ p{margin:0 0 1em;max-width:62ch}
 .rail .pcard,.card a{text-decoration:none;color:inherit;display:block}
 .card a:hover{text-decoration:none}
 .rail img,.card img{width:100%;aspect-ratio:3/2;object-fit:cover}
-/* stand-in for a project whose photo hasn't been added yet */
-.rail .ph{width:100%;aspect-ratio:3/2;display:grid;place-items:center;color:var(--dim);font-size:.85rem;letter-spacing:.06em;
+/* stand-in for a project or collection whose photos haven't been added yet */
+.rail .ph,.ccard .ph,.cphotos .ph{width:100%;aspect-ratio:3/2;display:grid;place-items:center;color:var(--dim);font-size:.85rem;letter-spacing:.06em;
   background:repeating-linear-gradient(45deg,transparent 0 11px,rgba(79,106,93,.12) 11px 12px),var(--warm-stone)}
 .cap{display:block;padding-top:.8rem}
 .cap h3{transition:color .2s}
@@ -181,3 +181,32 @@ p{margin:0 0 1em;max-width:62ch}
   /* card tracks the collage width (min(100cqw,560px)) and overlaps only its bottom 12%, which clears the hills photo */
   .about-card{align-self:auto;justify-self:center;width:calc(min(100cqw,560px) * .88);margin:calc(min(100cqw,560px) * -.12) 0 0}
 }
+
+/* ---- gallery: collections (ConditionGrid layout) ---- */
+.band > h2{margin-bottom:clamp(1rem,2.5vw,1.6rem)}
+.cgrid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(.8rem,1.6vw,1.1rem)}
+.ccard{position:relative;display:block;grid-column:span 12;height:clamp(240px,30vw,420px);overflow:hidden;border-radius:.9rem;
+  background:var(--warm-stone);color:inherit;text-decoration:none}
+@media(min-width:640px){.ccard.s5{grid-column:span 5}.ccard.s7{grid-column:span 7}}
+.ccard img,.ccard .ph{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.ccard:hover img{transform:scale(1.04)}
+.ccard:hover{text-decoration:none}
+.ccard-bar{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:flex-end;gap:.8rem;padding:clamp(.7rem,1.6vw,1rem)}
+.ccard-label{display:grid;gap:.15rem;min-width:0;padding:.55rem .95rem;border-radius:.75rem;background:var(--near-black);color:var(--cream)}
+.ccard-label strong{font-family:var(--display);font-weight:500;font-size:clamp(.9rem,.8rem + .4vw,1.12rem);line-height:1.2}
+.ccard-label em{font-style:normal;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pale-sage)}
+.ccard-go{flex:none;display:grid;place-items:center;width:clamp(2.5rem,3.4vw,3rem);aspect-ratio:1;border-radius:50%;background:var(--near-black);color:var(--cream);transition:background .25s}
+.ccard-go svg{width:45%;height:45%;transition:transform .25s}
+.ccard:hover .ccard-go{background:var(--slate)}
+.ccard:hover .ccard-go svg{transform:translate(2px,-2px)}
+.ccard:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
+/* scroll-in: the hidden state only exists once the gallery script adds .reveal */
+.reveal .ccard{opacity:0;transform:translateY(40px);transition:opacity .6s ease-out,transform .6s ease-out}
+.reveal .ccard.in{opacity:1;transform:none}
+
+/* ---- collection pages ---- */
+.back{display:inline-block;margin-bottom:1rem;font-size:.92rem;color:var(--link);text-decoration:none}
+.back:hover{text-decoration:underline}
+.ctag{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase}
+.cphotos img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:.9rem}
+.cphotos .ph{width:100%;aspect-ratio:3/1;border-radius:.9rem}
