@@ -166,7 +166,14 @@ p{margin:0 0 1em;max-width:62ch}
 .about-card p{color:var(--cream);max-width:52ch}
 .about-card p:last-child{margin-bottom:0}
 .about-card .about-role{margin:0 0 1.2rem;color:var(--mist);font-size:.92rem}
-@media(max-width:1000px){
+.about-card p:last-of-type{margin-bottom:0}
+.about-cta{display:inline-flex;align-items:center;gap:.5em;margin-top:1.4rem;padding:.65em 1.3em;border-radius:999px;
+  background:var(--cream);color:var(--slate);font-weight:600;font-size:.95rem;text-decoration:none;transition:background .2s,color .2s}
+.about-cta span{transition:transform .2s}
+.about-cta:hover{background:var(--light-sage);color:var(--near-black);text-decoration:none}
+.about-cta:hover span{transform:translateX(3px)}
+.about-cta:focus-visible{outline:2px solid var(--cream);outline-offset:3px}
+@media(max-width:1200px){
   /* narrower screens: stack, with the card overlapping the headshot's foot; the hills sit a little higher */
   .about-wrap{grid-template-columns:1fr}
   .about-collage{width:min(100%,560px);justify-self:center}
