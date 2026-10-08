@@ -68,3 +68,18 @@ a{color:inherit}
 @media(max-width:780px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.split{grid-template-columns:1fr}}
 @media(max-width:460px){.g2,.g3,.g4{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* ---- project rail (Gallery6 pattern: header row + buttons, track bleeding off the right edge) ---- */
+.rail-band{padding:var(--band) 0;border-bottom:1px solid var(--rule)}
+.rail-top{display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;padding:0 var(--gut);margin-bottom:clamp(1.5rem,4vw,2.6rem)}
+@media(min-width:768px){.rail-top{flex-direction:row;align-items:flex-end}}
+.rail-top .side{display:flex;gap:.5rem;flex:none}
+.rail-btn{width:2.6rem;height:2.6rem;display:grid;place-items:center;border:1px solid var(--ink);background:transparent;color:inherit;cursor:pointer;font:inherit;font-size:.9rem}
+.rail-btn:disabled{opacity:.35;cursor:default}
+.rail-wrap{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-left:var(--gut);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.rail-wrap::-webkit-scrollbar{display:none}
+.rail{display:flex;gap:1rem;margin:0;padding:0 var(--gut);list-style:none;min-width:min-content}
+.rail>li{flex:0 0 min(78vw,452px);scroll-snap-align:start}
+.rail .img{aspect-ratio:3/2;border-radius:.75rem}
+.rail .cap{display:grid;gap:.5rem;padding-top:1rem}
+.rail .more{display:flex;align-items:center;gap:.5rem;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-top:.6rem}

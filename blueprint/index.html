@@ -20,13 +20,67 @@
   </div>
 </header>
 
-<section class="band">
-  <header><span class="tag">2 &middot; Project previews</span><span class="head big"></span><span class="bar m"></span></header>
-  <div class="stack" style="gap:clamp(.7rem,1.6vw,1.2rem)">
-    <article class="card feature"><div class="img"><span>Featured project 16:7</span></div><div class="cap"><span class="tag"></span><span class="head" style="width:70%"></span></div></article>
-    <div class="g4"><article class="card"><div class="img"><span>Project 4:3</span></div><div class="cap"><span class="tag">Type / location</span><span class="head" style="width:70%"></span></div></article><article class="card"><div class="img"><span>Project 4:3</span></div><div class="cap"><span class="tag">Type / location</span><span class="head" style="width:70%"></span></div></article><article class="card"><div class="img"><span>Project 4:3</span></div><div class="cap"><span class="tag">Type / location</span><span class="head" style="width:70%"></span></div></article><article class="card"><div class="img"><span>Project 4:3</span></div><div class="cap"><span class="tag">Type / location</span><span class="head" style="width:70%"></span></div></article></div>
+<section class="rail-band">
+  <div class="rail-top">
+    <div class="stack" style="gap:.7rem;justify-items:start">
+      <span class="tag">2 &middot; Project previews</span>
+      <span class="head big"></span>
+      <a class="more" href="projects.html" style="margin:0;color:var(--mark)">All projects &nearr;</a>
+    </div>
+    <div class="side">
+      <button class="rail-btn" type="button" data-rail="prev" aria-label="Previous projects">&larr;</button>
+      <button class="rail-btn" type="button" data-rail="next" aria-label="Next projects">&rarr;</button>
+    </div>
   </div>
-  <p style="margin-top:2rem"><a class="btn" href="projects.html">All projects</a></p>
+  <div class="rail-wrap" tabindex="0" role="region" aria-label="Project previews">
+    <ul class="rail">
+    <li><a href="projects.html" style="text-decoration:none;display:block">
+      <div class="img"><span>Project 3:2</span></div>
+      <div class="cap">
+        <span class="tag">Type / location</span>
+        <span class="head" style="width:80%"></span>
+        <span class="bar l"></span><span class="bar m"></span>
+        <span class="more">Read more &rarr;</span>
+      </div>
+    </a></li>
+    <li><a href="projects.html" style="text-decoration:none;display:block">
+      <div class="img"><span>Project 3:2</span></div>
+      <div class="cap">
+        <span class="tag">Type / location</span>
+        <span class="head" style="width:80%"></span>
+        <span class="bar l"></span><span class="bar m"></span>
+        <span class="more">Read more &rarr;</span>
+      </div>
+    </a></li>
+    <li><a href="projects.html" style="text-decoration:none;display:block">
+      <div class="img"><span>Project 3:2</span></div>
+      <div class="cap">
+        <span class="tag">Type / location</span>
+        <span class="head" style="width:80%"></span>
+        <span class="bar l"></span><span class="bar m"></span>
+        <span class="more">Read more &rarr;</span>
+      </div>
+    </a></li>
+    <li><a href="projects.html" style="text-decoration:none;display:block">
+      <div class="img"><span>Project 3:2</span></div>
+      <div class="cap">
+        <span class="tag">Type / location</span>
+        <span class="head" style="width:80%"></span>
+        <span class="bar l"></span><span class="bar m"></span>
+        <span class="more">Read more &rarr;</span>
+      </div>
+    </a></li>
+    <li><a href="projects.html" style="text-decoration:none;display:block">
+      <div class="img"><span>Project 3:2</span></div>
+      <div class="cap">
+        <span class="tag">Type / location</span>
+        <span class="head" style="width:80%"></span>
+        <span class="bar l"></span><span class="bar m"></span>
+        <span class="more">Read more &rarr;</span>
+      </div>
+    </a></li>
+    </ul>
+  </div>
 </section>
 
 <section class="band">
@@ -54,6 +108,7 @@
   </div>
 </section>
 </main>
+<script src="carousel.js"></script>
 <footer class="foot">
   <div class="stack"><span class="lab">Name / role / region</span><span class="bar l"></span><span class="bar m"></span></div>
   <div class="stack"><span class="lab">Page links</span><span class="bar s"></span><span class="bar s"></span><span class="bar s"></span><span class="bar s"></span></div>
