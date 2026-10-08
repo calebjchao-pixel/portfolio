@@ -45,6 +45,13 @@ p{margin:0 0 1em;max-width:62ch}
   transform:translateY(-100%);visibility:hidden;transition:transform .45s cubic-bezier(.2,.7,.2,1),visibility 0s linear .45s}
 .bar-nav.over.show{transform:none;visibility:visible;transition:transform .45s cubic-bezier(.2,.7,.2,1),visibility 0s}
 .bar-nav.over{padding-block:.7rem;align-items:center}
+/* floating header: white logo, light-sage links, over a near-black fade so both read on photos and on the cream page */
+.bar-nav.over{color:var(--white)}
+.bar-nav.over::before{content:"";position:absolute;inset:0 0 -60% 0;z-index:-1;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(19,32,26,.72) 0%,rgba(19,32,26,.45) 55%,rgba(19,32,26,0) 100%)}
+.bar-nav.over .logo-sig{filter:drop-shadow(0 1px 4px rgba(0,0,0,.4))}
+.bar-nav.over li a{color:var(--light-sage);text-shadow:0 1px 6px rgba(0,0,0,.45)}
+.bar-nav.over li a[aria-current]{color:var(--white)}
 .bar-nav.over .logo{width:clamp(88px,8.5vw,112px)}
 .bar-nav.over ul{padding-top:0}
 .logo{display:grid;justify-items:center;width:clamp(104px,12vw,150px);container-type:inline-size;color:inherit;text-decoration:none}
