@@ -143,10 +143,18 @@ p{margin:0 0 1em;max-width:62ch}
 @media(max-width:460px){.g3,.g4{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar-nav.over,.bar-nav.over.show{transition:none}.sig path{animation:none;stroke-dashoffset:0;opacity:1}.role span{animation:none}}
 
-/* about: full-ratio headshot with a slate card overlapping its lower right */
-.about-wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);align-items:end;max-width:1080px;margin:0 auto}
-.about-photo{grid-column:1;grid-row:1;width:100%;height:auto;border-radius:1.25rem}
-.about-card{grid-column:2;grid-row:1;position:relative;z-index:1;margin:0 0 clamp(2rem,9%,5rem) -14%;
+/* about: the headshot (2:3) with landscape photos overlapping its edges, per the sketch:
+   one over the top-right corner, one across the left edge, one across the bottom edge.
+   Every position is a percentage of the collage box, so the arrangement scales as one piece. */
+.about-wrap{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(2rem,5vw,4.5rem);align-items:end;max-width:1180px;margin:0 auto}
+.about-collage{position:relative;width:100%;aspect-ratio:411/406;container-type:inline-size}
+.about-photo,.about-tile{position:absolute;display:block;object-fit:cover;border-radius:3.6cqi}
+.about-photo{left:28.2%;top:8.9%;width:46.7%;height:auto;aspect-ratio:2/3;z-index:1}
+.about-tile{width:39.7%;height:auto;aspect-ratio:3/2;z-index:2;box-shadow:0 2cqi 5cqi -1.5cqi rgba(19,32,26,.45)}
+.about-tile.t1{left:60.3%;top:0}
+.about-tile.t2{left:0;top:18.7%}
+.about-tile.t3{left:46.5%;top:73.2%}
+.about-card{position:relative;z-index:3;margin-bottom:clamp(1rem,4vw,3rem);
   padding:clamp(1.6rem,3.5vw,2.6rem);border-radius:1.25rem;background:var(--slate);color:var(--cream);
   box-shadow:0 24px 50px -20px rgba(19,32,26,.45)}
 .about-card h2{margin:0 0 .35rem;color:var(--cream)}
@@ -154,7 +162,7 @@ p{margin:0 0 1em;max-width:62ch}
 .about-card p:last-child{margin-bottom:0}
 .about-card .about-role{margin:0 0 1.2rem;color:var(--mist);font-size:.92rem}
 @media(max-width:780px){
-  .about-wrap{grid-template-columns:1fr}
-  .about-photo{grid-column:1;grid-row:1;width:min(100%,460px);justify-self:center}
-  .about-card{grid-column:1;grid-row:2;margin:-4rem 1rem 0}
+  .about-wrap{grid-template-columns:1fr;gap:1.5rem}
+  .about-collage{width:min(100%,520px);justify-self:center}
+  .about-card{margin:0}
 }
