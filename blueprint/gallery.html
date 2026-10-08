@@ -11,7 +11,7 @@
   <ul><li><a href="index.html">Home</a></li><li><a href="gallery.html" aria-current="page">Gallery</a></li><li><a href="experience.html">Experience</a></li><li><a href="contact.html">Contact</a></li></ul>
 </nav>
 <main id="main">
-<div class="page-top"><h1>Gallery</h1><p>Aerial photography from around the valley.</p></div>
+<div class="page-top"><h1>Gallery</h1></div>
 <section class="band" id="collections" aria-labelledby="col-h">
   <h2 id="col-h">Collections</h2>
   <div class="cgrid">
@@ -43,7 +43,7 @@
 </section>
 <section class="band" aria-labelledby="fav-h">
   <h2 id="fav-h">Favorites</h2>
-  <div class="g3 photos"><img src="img/max-0800-f5e5ce.webp" alt="" loading="lazy"><img src="img/dji-0012-edit-7f7119.webp" alt="" loading="lazy"><img src="img/dji-0024-3a039d.webp" alt="" loading="lazy"><img src="img/dji-0042-c3b562.webp" alt="" loading="lazy"><img src="img/dji-0060-edited-78417d.webp" alt="" loading="lazy"><img src="img/max-0079-edit-46f82d.webp" alt="" loading="lazy"><img src="img/max-0102-edit-1ec5df.webp" alt="" loading="lazy"><img src="img/5-a67242.webp" alt="" loading="lazy"><img src="img/dji-0853-bf1c23.webp" alt="" loading="lazy"><img src="img/dji-20260325124029-0001-v-2-9e9817.webp" alt="" loading="lazy"><img src="img/1-edited-sf-2959e1.webp" alt="" loading="lazy"><img src="img/dji-0008-305f70.webp" alt="" loading="lazy"></div>
+  <div class="mosaic"><a class="m big" href="img/1-edited-sf-2959e1.webp" data-lb><img src="img/1-edited-sf-2959e1.webp" alt="Tower Bridge and the Sacramento skyline" loading="lazy"></a><a class="m " href="img/max-0800-f5e5ce.webp" data-lb><img src="img/max-0800-f5e5ce.webp" alt="Neighborhood rooftops with the Sutter Buttes on the horizon" loading="lazy"></a><a class="m " href="img/dji-0024-3a039d.webp" data-lb><img src="img/dji-0024-3a039d.webp" alt="Freight train curving along a levee at dusk" loading="lazy"></a><a class="m " href="img/dji-0012-edit-7f7119.webp" data-lb><img src="img/dji-0012-edit-7f7119.webp" alt="Forest-lined lake under cloud" loading="lazy"></a><a class="m " href="img/max-0079-edit-46f82d.webp" data-lb><img src="img/max-0079-edit-46f82d.webp" alt="The Delta King riverboat on the Sacramento riverfront" loading="lazy"></a><a class="m " href="img/5-a67242.webp" data-lb><img src="img/5-a67242.webp" alt="The Ziggurat building above the trees" loading="lazy"></a><a class="m big r" href="img/dji-0008-305f70.webp" data-lb><img src="img/dji-0008-305f70.webp" alt="Sunset over flooded fields" loading="lazy"></a><a class="m " href="img/dji-0042-c3b562.webp" data-lb><img src="img/dji-0042-c3b562.webp" alt="A parked car with the Sutter Buttes behind" loading="lazy"></a><a class="m " href="img/dji-0060-edited-78417d.webp" data-lb><img src="img/dji-0060-edited-78417d.webp" alt="Low sun under storm clouds over dark fields" loading="lazy"></a><a class="m " href="img/max-0102-edit-1ec5df.webp" data-lb><img src="img/max-0102-edit-1ec5df.webp" alt="Tower Bridge's gold towers over the river" loading="lazy"></a><a class="m " href="img/dji-0853-bf1c23.webp" data-lb><img src="img/dji-0853-bf1c23.webp" alt="River bend beside a highway and open fields" loading="lazy"></a><a class="m " href="img/dji-20260325124029-0001-v-2-9e9817.webp" data-lb><img src="img/dji-20260325124029-0001-v-2-9e9817.webp" alt="Superintendent of Schools conference center sign" loading="lazy"></a></div>
 </section>
 </main>
 <footer class="foot">
@@ -53,6 +53,27 @@
   <p class="end">&copy; 2026 Caleb Chao</p>
 </footer>
 
+<dialog class="lb" aria-label="Photo viewer">
+  <img alt="">
+  <button class="lb-x" type="button" aria-label="Close">&times;</button>
+  <button class="lb-prev" type="button" aria-label="Previous photo">&larr;</button>
+  <button class="lb-next" type="button" aria-label="Next photo">&rarr;</button>
+</dialog>
+<script>
+// Favorites open full size in a dialog; without JS each tile is a plain link to the image.
+(() => {
+  const links = [...document.querySelectorAll('[data-lb]')], dlg = document.querySelector('.lb');
+  if (!dlg || !dlg.showModal) return;
+  const img = dlg.querySelector('img'); let i = 0;
+  const show = n => { i = (n + links.length) % links.length; img.src = links[i].href; img.alt = links[i].querySelector('img').alt; };
+  links.forEach((a, n) => a.addEventListener('click', e => { e.preventDefault(); show(n); dlg.showModal(); }));
+  dlg.querySelector('.lb-x').onclick = () => dlg.close();
+  dlg.querySelector('.lb-prev').onclick = () => show(i - 1);
+  dlg.querySelector('.lb-next').onclick = () => show(i + 1);
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); });
+})();
+</script>
 <script>
 // Collection cards rise in as they scroll into view. Hidden state only exists once this runs, so the grid is complete without JS.
 (() => {
