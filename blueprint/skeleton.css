@@ -255,15 +255,41 @@ p{margin:0 0 1em;max-width:62ch}
 .crumb{padding:clamp(.5rem,1.5vw,1rem) var(--gut) 0}
 .crumb .back{margin:0}
 
-/* ---- Sutter Buttes: infinite depth gallery ---- */
-.ig{padding:clamp(1.5rem,4vw,2.5rem) var(--gut) var(--band)}
-.ig-title{margin-bottom:clamp(1.5rem,4vw,2.5rem)}
+/* ---- Sutter Buttes: depth gallery that hands over to a carousel ---- */
+.ig{--stage-h:clamp(380px,70svh,780px);padding:clamp(1rem,3vw,2rem) 0 var(--band)}
+.ig-title{text-align:center;margin:0 var(--gut) clamp(1.5rem,4vw,2.5rem)}
+.ig-stage{position:relative;display:flex;flex-direction:column;justify-content:center;transition:min-height .9s cubic-bezier(.4,0,.2,1)}
 .ig-canvas{display:none}
-/* once ig.js takes over: a full-bleed stage with the title floating in the middle, inverted over the photos */
-.ig.ig-js{position:relative;padding:0;height:clamp(440px,82svh,920px);overflow:hidden}
-.ig.ig-js .ig-fallback{display:none}
-.ig.ig-js .ig-canvas{display:block;position:absolute;inset:0;opacity:0;transition:opacity .8s ease}
-.ig.ig-on .ig-canvas{opacity:1}
+/* while ig.js runs: canvas fills the stage edge to edge; the carousel waits, invisible but holding its space */
+.ig-js .ig-stage{min-height:var(--stage-h)}
+.ig-js .ig-canvas{display:block;position:absolute;inset:0;z-index:1;opacity:0;pointer-events:none;transition:opacity 1s ease}  /* never blocks the carousel underneath */
+.ig-js.ig-on .ig-canvas{opacity:1}
 .ig-canvas canvas{display:block;width:100%;height:100%}
-.ig.ig-js .ig-title{position:absolute;inset:0;z-index:2;display:grid;place-items:center;margin:0;padding:0 var(--gut);
-  font-size:clamp(2.6rem,1.4rem + 6vw,6rem);text-align:center;text-decoration:none;color:#fff;mix-blend-mode:exclusion;pointer-events:none}
+.ig-js .car{opacity:0;visibility:hidden}
+/* hand-over: animation fades out, carousel fades in, stage settles to the carousel's own height */
+.ig-js.ig-done .ig-stage{min-height:0}
+.ig-js.ig-done .ig-canvas{opacity:0;visibility:hidden;transition:opacity 1s ease,visibility 0s 1s}
+.ig-js.ig-done .car{opacity:1;visibility:visible;transition:opacity 1s ease .25s}
+
+/* ---- photo carousel ---- */
+.car{display:grid;justify-items:center;gap:1rem;padding:0 var(--gut)}
+.car-view{position:relative;width:min(100%,1040px,calc(var(--stage-h) * 4 / 3))}
+.car-track{display:flex;aspect-ratio:4/3;overflow-x:auto;scroll-snap-type:x mandatory;border-radius:1rem;background:var(--warm-stone);scrollbar-width:none}
+.car-track::-webkit-scrollbar{display:none}
+.car-track:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
+.car-slide{flex:0 0 100%;margin:0;scroll-snap-align:start}
+.car-slide img{display:block;width:100%;height:100%;object-fit:cover}
+.car-btn,.car-dots{display:none}
+.car-js .car-btn{position:absolute;top:50%;translate:0 -50%;display:grid;place-items:center;width:clamp(2.4rem,4vw,3rem);aspect-ratio:1;
+  border:0;border-radius:50%;background:rgba(243,239,234,.9);color:var(--near-black);font:inherit;font-size:1.1rem;cursor:pointer;
+  box-shadow:0 4px 14px -4px rgba(19,32,26,.4);transition:background .2s,color .2s}
+.car-js .car-btn:hover{background:var(--slate);color:var(--cream)}
+.car-btn:focus-visible{outline:2px solid var(--cream);outline-offset:2px}
+.car-prev{left:clamp(.5rem,1.5vw,1rem)}
+.car-next{right:clamp(.5rem,1.5vw,1rem)}
+.car-js .car-dots{display:flex;gap:.15rem}
+.car-dot{display:grid;place-items:center;width:1.6rem;height:1.6rem;padding:0;border:0;background:none;cursor:pointer}
+.car-dot::before{content:"";width:.55rem;height:.55rem;border-radius:50%;background:var(--stone-border);transition:background .2s,transform .2s}
+.car-dot:hover::before{background:var(--sage)}
+.car-dot[aria-current]::before{background:var(--slate);transform:scale(1.25)}
+.car-dot:focus-visible{outline:2px solid var(--slate);outline-offset:1px;border-radius:50%}

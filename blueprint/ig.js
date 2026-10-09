@@ -1,8 +1,9 @@
 // Infinite depth gallery (port of the 3d-gallery-photography component, without React).
 // Photos drift toward the viewer on their own: they sharpen and fade in from the distance,
-// then blur and fade out before reaching the camera, and loop forever. There is no wheel,
-// key or hover control. Without WebGL, without three.js, or with reduced motion, the plain
-// photo grid inside .ig stays visible instead.
+// then blur and fade out before reaching the camera. There is no wheel, key or hover control.
+// After RUN seconds of play the animation fades out and the photo carousel underneath fades
+// in (.ig-done). Without WebGL, without three.js, with reduced motion, or if a photo fails
+// to load, the carousel simply shows from the start.
 (() => {
   const stage = document.querySelector('.ig');
   if (!stage || !window.THREE) return;
@@ -10,7 +11,7 @@
   const probe = document.createElement('canvas');
   if (!(probe.getContext('webgl2') || probe.getContext('webgl'))) return;
 
-  const sources = [...stage.querySelectorAll('.ig-fallback img')].map(i => i.getAttribute('src'));
+  const sources = [...stage.querySelectorAll('.car-slide img')].map(i => i.getAttribute('src'));
   if (!sources.length) return;
 
   const VISIBLE = 12;            // planes in flight
@@ -20,6 +21,8 @@
   const FADE_IN = [0.05, 0.25], FADE_OUT = [0.40, 0.43];
   const BLUR_IN = [0.0, 0.10], BLUR_OUT = [0.40, 0.43], MAX_BLUR = 8;
   const MAX_X = 8, MAX_Y = 8;
+  const RUN = 12;               // seconds of animation before handing over to the carousel
+  const FADE_MS = 1000;         // matches the CSS cross-fade
 
   let renderer;
   try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); }
@@ -134,11 +137,13 @@
   resize();
 
   const advance = VISIBLE % sources.length || sources.length;
-  let last = 0, raf = 0, onScreen = false;
+  let last = 0, raf = 0, onScreen = false, played = 0, finishing = false, finished = false;
   const frame = now => {
     const dt = last ? Math.min(0.05, (now - last) / 1000) : 0;
     last = now;
     const time = now / 1000;
+    played += dt;
+    if (!finishing && played >= RUN) finish();
     for (const p of planes) {
       p.z += SPEED * dt;
       if (p.z >= DEPTH) {                       // wrapped past the camera: back to the far end, next photo
@@ -156,8 +161,22 @@
     renderer.render(scene, camera);
     raf = requestAnimationFrame(frame);
   };
-  const start = () => { if (!raf && loaded === sources.length) { last = 0; raf = requestAnimationFrame(frame); } };
+  const start = () => { if (!raf && !finished && loaded === sources.length) { last = 0; raf = requestAnimationFrame(frame); } };
   const stop = () => { cancelAnimationFrame(raf); raf = 0; };
+
+  // Cross-fade to the carousel; keep drawing while the canvas fades, then free the GPU.
+  function finish() {
+    finishing = true;
+    stage.classList.add('ig-done');
+    setTimeout(() => {
+      finished = true; stop();
+      renderer.dispose(); geometry.dispose();
+      planes.forEach(p => p.material.dispose());
+      textures.forEach(t => t && t.dispose());
+      renderer.forceContextLoss();
+      renderer.domElement.remove();
+    }, FADE_MS);
+  }
 
   // Only animate while the gallery is on screen and the tab is visible.
   new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; onScreen ? start() : stop(); }).observe(stage);
