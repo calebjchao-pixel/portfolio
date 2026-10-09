@@ -250,3 +250,7 @@ p{margin:0 0 1em;max-width:62ch}
 .about-anim.in .about-tile{opacity:1;transform:none}
 
 @media(max-width:700px){.foot{grid-template-columns:1fr}}
+
+/* collection pages: back link sits top-left on the page gutter, above the centered title */
+.crumb{padding:clamp(.5rem,1.5vw,1rem) var(--gut) 0}
+.crumb .back{margin:0}
