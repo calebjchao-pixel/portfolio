@@ -254,3 +254,16 @@ p{margin:0 0 1em;max-width:62ch}
 /* collection pages: back link sits top-left on the page gutter, above the centered title */
 .crumb{padding:clamp(.5rem,1.5vw,1rem) var(--gut) 0}
 .crumb .back{margin:0}
+
+/* ---- Sutter Buttes: infinite depth gallery ---- */
+.ig{padding:clamp(1.5rem,4vw,2.5rem) var(--gut) var(--band)}
+.ig-title{margin-bottom:clamp(1.5rem,4vw,2.5rem)}
+.ig-canvas{display:none}
+/* once ig.js takes over: a full-bleed stage with the title floating in the middle, inverted over the photos */
+.ig.ig-js{position:relative;padding:0;height:clamp(440px,82svh,920px);overflow:hidden}
+.ig.ig-js .ig-fallback{display:none}
+.ig.ig-js .ig-canvas{display:block;position:absolute;inset:0;opacity:0;transition:opacity .8s ease}
+.ig.ig-on .ig-canvas{opacity:1}
+.ig-canvas canvas{display:block;width:100%;height:100%}
+.ig.ig-js .ig-title{position:absolute;inset:0;z-index:2;display:grid;place-items:center;margin:0;padding:0 var(--gut);
+  font-size:clamp(2.6rem,1.4rem + 6vw,6rem);text-align:center;text-decoration:none;color:#fff;mix-blend-mode:exclusion;pointer-events:none}
