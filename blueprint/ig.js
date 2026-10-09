@@ -16,13 +16,16 @@
 
   const VISIBLE = 12;            // planes in flight
   const DEPTH = 50;              // length of the tunnel the planes travel
-  const SPEED = 1.5;             // units per second toward the camera
-  const FORCE = 0.1;             // steady cloth curve (the component's auto-play velocity)
-  const FADE_IN = [0.05, 0.25], FADE_OUT = [0.40, 0.43];
-  const BLUR_IN = [0.0, 0.10], BLUR_OUT = [0.40, 0.43], MAX_BLUR = 8;
+  // Speed rises on an ease-in curve over the run: gentle drift at first, rushing past by the hand-over.
+  const SPEED_START = 1.5, SPEED_END = 14;   // units per second toward the camera
+  const speedAt = t => { const k = Math.min(1, t / RUN); return SPEED_START + (SPEED_END - SPEED_START) * k * k * k; };
+  const FORCE = 0.1;             // cloth curve at the starting speed; grows with speed
+  // Photos now come close enough to sweep past the screen edges before they fade.
+  const FADE_IN = [0.05, 0.25], FADE_OUT = [0.43, 0.47];
+  const BLUR_IN = [0.0, 0.10], BLUR_OUT = [0.43, 0.47], MAX_BLUR = 8;
   const MAX_X = 8, MAX_Y = 8;
   const RUN = 12;               // seconds of animation before handing over to the carousel
-  const FADE_MS = 1000;         // matches the CSS cross-fade
+  const FADE_MS = 1400;         // matches the CSS fade-out of the canvas
 
   let renderer;
   try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); }
@@ -124,28 +127,51 @@
     return 0;
   };
 
-  // Narrow (portrait) screens see less sideways, so pull the scatter in toward the centre.
+  // The canvas covers the whole first screen (from the page top to at least the bottom of the window,
+  // or the gallery's bottom if that is lower), so photos fly out to the screen borders. The camera's
+  // view is shifted so the vanishing point stays at the centre of the gallery area, and the field of
+  // view is widened so the gallery area looks exactly as it would on its own.
+  const area = stage.querySelector('.ig-stage');
+  const BASE_FOV = 55, tanHalf = Math.tan(BASE_FOV * Math.PI / 360);
   let xSpread = 1;
   const resize = () => {
-    const w = holder.clientWidth || 1, h = holder.clientHeight || 1;
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h;
+    const r = area.getBoundingClientRect();
+    const top = r.top + scrollY, stageH = r.height || 1;
+    const W = document.documentElement.clientWidth || 1;
+    const H = Math.max(innerHeight, top + stageH);
+    holder.style.top = -top + 'px';
+    holder.style.height = H + 'px';
+    renderer.setSize(W, H, false);
+    const cy = top + stageH / 2;                 // vanishing point, in canvas pixels
+    const Hv = 2 * Math.max(cy, H - cy);         // virtual frame centred on it
+    camera.fov = 2 * Math.atan(tanHalf * Hv / stageH) * 180 / Math.PI;
+    camera.aspect = W / Hv;
+    camera.setViewOffset(W, Hv, 0, Hv / 2 - cy, W, H);
     camera.updateProjectionMatrix();
-    xSpread = Math.max(0.4, Math.min(1, camera.aspect / 1.6));
+    // Narrow (portrait) screens see less sideways, so pull the scatter in toward the centre.
+    xSpread = Math.max(0.4, Math.min(1, (W / stageH) / 1.6));
   };
-  new ResizeObserver(resize).observe(holder);
+  new ResizeObserver(resize).observe(stage);
+  addEventListener('resize', resize);
+  if (document.fonts) document.fonts.ready.then(resize);
   resize();
 
   const advance = VISIBLE % sources.length || sources.length;
   let last = 0, raf = 0, onScreen = false, played = 0, finishing = false, finished = false;
   const frame = now => {
-    const dt = last ? Math.min(0.05, (now - last) / 1000) : 0;
+    const raw = last ? (now - last) / 1000 : 0;
     last = now;
+    // The run is timed in real seconds, so slow devices hand over on schedule too; only gaps longer
+    // than a quarter second (a backgrounded tab) are skipped. Movement steps are capped a little
+    // tighter so a stalled frame never makes the photos jump.
+    const dt = Math.min(0.1, raw);
     const time = now / 1000;
-    played += dt;
+    played += Math.min(0.25, raw);
     if (!finishing && played >= RUN) finish();
+    const speed = speedAt(played);
+    const force = FORCE * Math.min(4, speed / SPEED_START);
     for (const p of planes) {
-      p.z += SPEED * dt;
+      p.z += speed * dt;
       if (p.z >= DEPTH) {                       // wrapped past the camera: back to the far end, next photo
         p.z -= DEPTH;
         p.img = (p.img + advance) % sources.length;
@@ -155,6 +181,7 @@
       p.material.uniforms.opacity.value = o;
       p.material.uniforms.blurAmount.value = blurAt(n);
       p.material.uniforms.time.value = time;
+      p.material.uniforms.scrollForce.value = force;
       p.mesh.position.set(p.x * xSpread, p.y, p.z - DEPTH / 2);
       p.mesh.visible = o > 0.002 && !!p.material.uniforms.map.value;
     }
