@@ -62,8 +62,17 @@
     uniform float blurAmount;
     uniform float scrollForce;
     uniform vec2 texel;
+    uniform vec2 size;     // plane width/height in world units, so corners stay circular
+    uniform float radius;  // corner radius in the same units
     varying vec2 vUv;
     void main() {
+      // rounded-rectangle mask with a one-pixel soft edge
+      vec2 p = (vUv - 0.5) * size;
+      vec2 q = abs(p) - (size * 0.5 - radius);
+      float dist = length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - radius;
+      float edge = fwidth(dist);
+      float mask = 1.0 - smoothstep(-edge, edge, dist);
+      if (mask <= 0.0) discard;
       vec4 color = texture2D(map, vUv);
       if (blurAmount > 0.0) {
         vec4 sum = vec4(0.0);
@@ -78,7 +87,7 @@
         color = sum / total;
       }
       color.rgb += vec3(abs(scrollForce) * 0.005);
-      gl_FragColor = vec4(color.rgb, color.a * opacity);
+      gl_FragColor = vec4(color.rgb, color.a * opacity * mask);
     }`;
 
   const geometry = new THREE.PlaneGeometry(1, 1, 32, 32);
@@ -95,8 +104,10 @@
   const planes = spots.map((spot, i) => {
     const material = new THREE.ShaderMaterial({
       transparent: true, depthWrite: false, vertexShader, fragmentShader,
+      extensions: { derivatives: true },   // fwidth() for the anti-aliased corners on WebGL1
       uniforms: { map: { value: null }, opacity: { value: 0 }, blurAmount: { value: 0 },
-                  scrollForce: { value: FORCE }, time: { value: 0 }, texel: { value: new THREE.Vector2(1e-3, 1e-3) } },
+                  scrollForce: { value: FORCE }, time: { value: 0 }, texel: { value: new THREE.Vector2(1e-3, 1e-3) },
+                  size: { value: new THREE.Vector2(2, 2) }, radius: { value: 0.14 } },
     });
     const mesh = new THREE.Mesh(geometry, material);
     mesh.visible = false;
@@ -111,6 +122,7 @@
     const w = t.image.width, h = t.image.height, a = w / h;
     p.material.uniforms.texel.value.set(1 / w, 1 / h);
     p.mesh.scale.set(a > 1 ? 2 * a : 2, a > 1 ? 2 : 2 / a, 1);
+    p.material.uniforms.size.value.set(p.mesh.scale.x, p.mesh.scale.y);
   };
 
   const ramp = (n, [a, b]) => (n - a) / (b - a);
