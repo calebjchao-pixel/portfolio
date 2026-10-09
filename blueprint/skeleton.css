@@ -132,7 +132,7 @@ p{margin:0 0 1em;max-width:62ch}
 .contact-lines a:hover{text-decoration:underline}
 
 /* footer: beige with the accent rule on top, as the original's border */
-.foot{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1.4rem clamp(1rem,4vw,3rem);
+.foot{display:grid;grid-template-columns:repeat(3,max-content);justify-content:start;gap:1.4rem clamp(2rem,6vw,5rem);
   padding:clamp(2.5rem,6vw,4rem) var(--gut) 2.5rem;background:var(--slate);color:var(--mist);font-size:.95rem}
 .foot .mark{display:inline-block;margin-bottom:.3rem;font-family:var(--display);font-weight:500;font-size:1.05rem;color:var(--cream)}
 .foot nav{display:grid;gap:.4rem}
@@ -248,3 +248,5 @@ p{margin:0 0 1em;max-width:62ch}
 .about-anim .about-tile.t1{transform:translate(14cqi,-10cqi) rotate(6deg);transition-delay:.12s}
 .about-anim .about-tile.t2{transform:translate(-14cqi,10cqi) rotate(5deg);transition-delay:.24s}
 .about-anim.in .about-tile{opacity:1;transform:none}
+
+@media(max-width:700px){.foot{grid-template-columns:1fr}}
