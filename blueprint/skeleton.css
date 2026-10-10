@@ -255,25 +255,9 @@ p{margin:0 0 1em;max-width:62ch}
 .crumb{padding:clamp(.5rem,1.5vw,1rem) var(--gut) 0}
 .crumb .back{margin:0}
 
-/* ---- Sutter Buttes: depth gallery that hands over to a carousel ---- */
+/* ---- Sutter Buttes: title above a photo carousel ---- */
 .ig{--stage-h:clamp(380px,70svh,780px);padding:clamp(1rem,3vw,2rem) 0 var(--band)}
 .ig-title{text-align:center;margin:0 var(--gut) clamp(1.5rem,4vw,2.5rem)}
-/* title and back link stay on top of the full-screen animation */
-.ig-js .ig-title{position:relative;z-index:2}
-body:has(.ig-js) .crumb{position:relative;z-index:2}
-.ig-stage{position:relative;display:flex;flex-direction:column;justify-content:center;transition:min-height .9s cubic-bezier(.4,0,.2,1)}
-.ig-canvas{display:none}
-/* while ig.js runs: canvas fills the stage edge to edge; the carousel waits, invisible but holding its space */
-.ig-js .ig-stage{min-height:var(--stage-h)}
-.ig-js .ig-canvas{display:block;position:absolute;left:0;right:0;top:0;height:100%;z-index:1;opacity:0;pointer-events:none;transition:opacity 1s ease}  /* never blocks the carousel underneath */
-.ig-js.ig-on .ig-canvas{opacity:1}
-.ig-canvas canvas{display:block;width:100%;height:100%}
-.ig-js .car{opacity:0;visibility:hidden}
-/* hand-over: animation fades out, carousel fades in, stage settles to the carousel's own height */
-.ig-js.ig-done .ig-stage{min-height:0;transition-duration:1.6s}
-.ig-js.ig-done .ig-canvas{opacity:0;visibility:hidden;transition:opacity 1.4s ease,visibility 0s 1.4s}
-/* the carousel eases in slowly, starting as the animation is half faded */
-.ig-js.ig-done .car{opacity:1;visibility:visible;transition:opacity 2.6s cubic-bezier(.25,.1,.25,1) .7s}
 
 /* ---- photo carousel ---- */
 .car{display:grid;justify-items:center;gap:1rem;padding:0 var(--gut)}
