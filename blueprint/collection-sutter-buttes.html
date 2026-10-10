@@ -14,16 +14,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a class="back" href="gallery.html#collections">&larr; All collections</a></nav>
 <section class="ig" aria-labelledby="ig-title">
   <h1 class="ig-title" id="ig-title">Sutter Buttes</h1>
-  <div class="ig-stage">
-    <div class="car" role="region" aria-roledescription="carousel" aria-label="Sutter Buttes photos">
-      <div class="car-view">
-        <div class="car-track" tabindex="0"><figure class="car-slide" role="group" aria-roledescription="slide" aria-label="1 of 6"><img src="img/sb-1.webp" alt="A black sedan on a gravel road beside farm fields, the Sutter Buttes on the horizon"></figure><figure class="car-slide" role="group" aria-roledescription="slide" aria-label="2 of 6"><img src="img/sb-2.webp" alt="The sun setting under heavy clouds over flooded fields and a farm road" loading="lazy"></figure><figure class="car-slide" role="group" aria-roledescription="slide" aria-label="3 of 6"><img src="img/sb-3.webp" alt="The Sutter Buttes rising beyond flooded rice fields under storm clouds" loading="lazy"></figure><figure class="car-slide" role="group" aria-roledescription="slide" aria-label="4 of 6"><img src="img/sb-4.webp" alt="Sunlight bursting through dark storm clouds over green fields" loading="lazy"></figure><figure class="car-slide" role="group" aria-roledescription="slide" aria-label="5 of 6"><img src="img/sb-5.webp" alt="Orchards and flooded fields stretching to the horizon under a blue evening sky" loading="lazy"></figure><figure class="car-slide" role="group" aria-roledescription="slide" aria-label="6 of 6"><img src="img/sb-6.webp" alt="The Sutter Buttes and their foothills at dusk under blue and violet clouds" loading="lazy"></figure></div>
-        <button class="car-btn car-prev" type="button" aria-label="Previous photo"><span aria-hidden="true">&larr;</span></button>
-        <button class="car-btn car-next" type="button" aria-label="Next photo"><span aria-hidden="true">&rarr;</span></button>
-      </div>
-      <div class="car-dots" role="group" aria-label="Choose a photo"></div>
-    </div>
-  </div>
+  <div class="sg"><a class="sg-item" href="img/sb-1.webp" data-lb><img src="img/sb-1.webp" alt="A black sedan on a gravel road beside farm fields, the Sutter Buttes on the horizon" loading="lazy"></a><a class="sg-item" href="img/sb-2.webp" data-lb><img src="img/sb-2.webp" alt="The sun setting under heavy clouds over flooded fields and a farm road" loading="lazy"></a><a class="sg-item" href="img/sb-3.webp" data-lb><img src="img/sb-3.webp" alt="The Sutter Buttes rising beyond flooded rice fields under storm clouds" loading="lazy"></a><a class="sg-item" href="img/sb-4.webp" data-lb><img src="img/sb-4.webp" alt="Sunlight bursting through dark storm clouds over green fields" loading="lazy"></a><a class="sg-item" href="img/sb-5.webp" data-lb><img src="img/sb-5.webp" alt="Orchards and flooded fields stretching to the horizon under a blue evening sky" loading="lazy"></a><a class="sg-item" href="img/sb-6.webp" data-lb><img src="img/sb-6.webp" alt="The Sutter Buttes and their foothills at dusk under blue and violet clouds" loading="lazy"></a></div>
 </section>
 </main>
 <footer class="foot">
@@ -33,5 +24,25 @@
   <p class="end">&copy; 2026 Caleb Chao</p>
 </footer>
 
-<script src="car.js"></script>
+<dialog class="lb" aria-label="Photo viewer">
+  <img alt="">
+  <button class="lb-x" type="button" aria-label="Close">&times;</button>
+  <button class="lb-prev" type="button" aria-label="Previous photo">&larr;</button>
+  <button class="lb-next" type="button" aria-label="Next photo">&rarr;</button>
+</dialog>
+<script>
+// Favorites open full size in a dialog; without JS each tile is a plain link to the image.
+(() => {
+  const links = [...document.querySelectorAll('[data-lb]')], dlg = document.querySelector('.lb');
+  if (!dlg || !dlg.showModal) return;
+  const img = dlg.querySelector('img'); let i = 0;
+  const show = n => { i = (n + links.length) % links.length; img.src = links[i].href; img.alt = links[i].querySelector('img').alt; };
+  links.forEach((a, n) => a.addEventListener('click', e => { e.preventDefault(); show(n); dlg.showModal(); }));
+  dlg.querySelector('.lb-x').onclick = () => dlg.close();
+  dlg.querySelector('.lb-prev').onclick = () => show(i - 1);
+  dlg.querySelector('.lb-next').onclick = () => show(i + 1);
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); });
+})();
+</script>
 </body></html>
