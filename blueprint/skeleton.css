@@ -255,13 +255,22 @@ p{margin:0 0 1em;max-width:62ch}
 .crumb{padding:clamp(.5rem,1.5vw,1rem) var(--gut) 0}
 .crumb .back{margin:0}
 
-/* ---- Sutter Buttes: title above a standard photo grid; each photo opens in the viewer ---- */
+/* ---- Sutter Buttes: title above a mosaic; each photo opens in the viewer ----
+   Desktop: a large 4:3 photo in the middle sets the row height, a tall photo fills each side
+   (contain:size so the side photos don't add height), and three equal 4:3 photos run below. */
 .ig{padding:clamp(1rem,3vw,2rem) var(--gut) var(--band)}
 .ig-title{text-align:center;margin:0 0 clamp(1.5rem,4vw,2.5rem)}
-.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.6rem,1.4vw,1rem);max-width:1200px;margin:0 auto}
-@media(max-width:900px){.sg{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.sg{grid-template-columns:1fr}}
-.sg-item{display:block;overflow:hidden;border-radius:.9rem;background:var(--warm-stone)}
-.sg-item img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
-.sg-item:hover img{transform:scale(1.04)}
-.sg-item:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
+.sm{display:grid;gap:clamp(.6rem,1.4vw,1rem);max-width:1200px;margin:0 auto;
+  grid-template-columns:repeat(12,1fr);grid-template-areas:"s1 s1 s1 c c c c c c s2 s2 s2" "b1 b1 b1 b1 b2 b2 b2 b2 b3 b3 b3 b3"}
+.sm-s1{grid-area:s1}.sm-c{grid-area:c}.sm-s2{grid-area:s2}.sm-b1{grid-area:b1}.sm-b2{grid-area:b2}.sm-b3{grid-area:b3}
+.sm-item{display:block;overflow:hidden;border-radius:.9rem;background:var(--warm-stone)}
+.sm-item img{display:block;width:100%;height:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.sm-s1,.sm-s2{contain:size}
+.sm-s1 img,.sm-s2 img{aspect-ratio:auto}
+.sm-item:hover img{transform:scale(1.04)}
+.sm-item:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
+/* tablet: the large photo across the top, then pairs; the last photo spans the width */
+@media(max-width:900px){.sm{grid-template-columns:1fr 1fr;grid-template-areas:"c c" "s1 s2" "b1 b2" "b3 b3"}
+  .sm-s1,.sm-s2{contain:none}.sm-s1 img,.sm-s2 img{aspect-ratio:4/3}}
+/* phone: one column */
+@media(max-width:560px){.sm{grid-template-columns:1fr;grid-template-areas:"c" "s1" "s2" "b1" "b2" "b3"}}
