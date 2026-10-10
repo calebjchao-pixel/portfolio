@@ -255,22 +255,14 @@ p{margin:0 0 1em;max-width:62ch}
 .crumb{padding:clamp(.5rem,1.5vw,1rem) var(--gut) 0}
 .crumb .back{margin:0}
 
-/* ---- Sutter Buttes: title above a staggered layout; each photo opens in the viewer ----
-   Every photo keeps 4:3. Desktop: three rows of two at different sizes (large, medium, small)
-   on a 12-column grid, offset left and right so the edges don't line up. */
+/* ---- Sutter Buttes: title above a 3 x 2 grid of 4:3 photos; each opens in the viewer ---- */
 .ig{padding:clamp(1rem,3vw,2rem) var(--gut) var(--band)}
 .ig-title{text-align:center;margin:0 0 clamp(1.5rem,4vw,2.5rem)}
-.sm{display:grid;grid-template-columns:repeat(12,1fr);align-items:start;gap:clamp(1rem,2.5vw,2rem) clamp(.6rem,1.4vw,1rem);max-width:1200px;margin:0 auto}
-.sm-c{grid-area:1/1/2/9}
-.sm-s1{grid-area:1/9/2/13;align-self:end}
-.sm-s2{grid-area:2/2/3/6;align-self:center}
-.sm-b1{grid-area:2/7/3/13}
-.sm-b2{grid-area:3/1/4/7}
-.sm-b3{grid-area:3/8/4/12;align-self:center}
+.sm{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.6rem,1.4vw,1rem);max-width:1200px;margin:0 auto}
 .sm-item{display:block;overflow:hidden;border-radius:.9rem;background:var(--warm-stone)}
 .sm-item img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
 .sm-item:hover img{transform:scale(1.04)}
 .sm-item:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
-/* tablet: two equal columns; phone: one */
-@media(max-width:900px){.sm{grid-template-columns:1fr 1fr}.sm .sm-item{grid-area:auto;align-self:start}}
+/* tablet: two columns; phone: one */
+@media(max-width:900px){.sm{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.sm{grid-template-columns:1fr}}
