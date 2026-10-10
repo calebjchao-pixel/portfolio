@@ -255,22 +255,22 @@ p{margin:0 0 1em;max-width:62ch}
 .crumb{padding:clamp(.5rem,1.5vw,1rem) var(--gut) 0}
 .crumb .back{margin:0}
 
-/* ---- Sutter Buttes: title above a mosaic; each photo opens in the viewer ----
-   Desktop: a large 4:3 photo in the middle sets the row height, a tall photo fills each side
-   (contain:size so the side photos don't add height), and three equal 4:3 photos run below. */
+/* ---- Sutter Buttes: title above a staggered layout; each photo opens in the viewer ----
+   Every photo keeps 4:3. Desktop: three rows of two at different sizes (large, medium, small)
+   on a 12-column grid, offset left and right so the edges don't line up. */
 .ig{padding:clamp(1rem,3vw,2rem) var(--gut) var(--band)}
 .ig-title{text-align:center;margin:0 0 clamp(1.5rem,4vw,2.5rem)}
-.sm{display:grid;gap:clamp(.6rem,1.4vw,1rem);max-width:1200px;margin:0 auto;
-  grid-template-columns:repeat(12,1fr);grid-template-areas:"s1 s1 s1 c c c c c c s2 s2 s2" "b1 b1 b1 b1 b2 b2 b2 b2 b3 b3 b3 b3"}
-.sm-s1{grid-area:s1}.sm-c{grid-area:c}.sm-s2{grid-area:s2}.sm-b1{grid-area:b1}.sm-b2{grid-area:b2}.sm-b3{grid-area:b3}
+.sm{display:grid;grid-template-columns:repeat(12,1fr);align-items:start;gap:clamp(1rem,2.5vw,2rem) clamp(.6rem,1.4vw,1rem);max-width:1200px;margin:0 auto}
+.sm-c{grid-area:1/1/2/9}
+.sm-s1{grid-area:1/9/2/13;align-self:end}
+.sm-s2{grid-area:2/2/3/6;align-self:center}
+.sm-b1{grid-area:2/7/3/13}
+.sm-b2{grid-area:3/1/4/7}
+.sm-b3{grid-area:3/8/4/12;align-self:center}
 .sm-item{display:block;overflow:hidden;border-radius:.9rem;background:var(--warm-stone)}
-.sm-item img{display:block;width:100%;height:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
-.sm-s1,.sm-s2{contain:size}
-.sm-s1 img,.sm-s2 img{aspect-ratio:auto}
+.sm-item img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
 .sm-item:hover img{transform:scale(1.04)}
 .sm-item:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
-/* tablet: the large photo across the top, then pairs; the last photo spans the width */
-@media(max-width:900px){.sm{grid-template-columns:1fr 1fr;grid-template-areas:"c c" "s1 s2" "b1 b2" "b3 b3"}
-  .sm-s1,.sm-s2{contain:none}.sm-s1 img,.sm-s2 img{aspect-ratio:4/3}}
-/* phone: one column */
-@media(max-width:560px){.sm{grid-template-columns:1fr;grid-template-areas:"c" "s1" "s2" "b1" "b2" "b3"}}
+/* tablet: two equal columns; phone: one */
+@media(max-width:900px){.sm{grid-template-columns:1fr 1fr}.sm .sm-item{grid-area:auto;align-self:start}}
+@media(max-width:560px){.sm{grid-template-columns:1fr}}
