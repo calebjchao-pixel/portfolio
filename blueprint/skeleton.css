@@ -130,9 +130,18 @@ p{margin:0 0 1em;max-width:62ch}
 .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin:1.6rem 0;padding-top:1.3rem;border-top:.2em solid var(--accent)}
 .stats dt{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
 .stats dd{margin:.3rem 0 0;font-family:var(--display);font-weight:500;font-size:1.2rem}
-.log{max-width:34rem}
-.logrow{display:flex;justify-content:space-between;gap:1rem;padding:.65rem 0;border-bottom:1px solid var(--rule)}
-.logrow span:first-child{font-weight:700}
+/* Experience: flight log and skills as matching stone cards, side by side (stacked on narrow screens) */
+.xp-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1rem,3vw,2rem);align-items:start}
+@media(max-width:860px){.xp-cards{grid-template-columns:1fr}}
+.card-panel{background:var(--warm-stone);border-radius:1rem;padding:clamp(1.25rem,3vw,2rem)}
+.card-panel h2{margin:0 0 1.1rem}
+.logrow{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.55rem 0;border-bottom:1px solid var(--stone-border)}
+.logrow:last-child{border-bottom:0;padding-bottom:0}
+.logrow span:first-child{font-weight:600}
+/* minutes sit in the same cream pills as the skill tags */
+.logrow span:last-child{flex:none;padding:.3rem .75rem;border-radius:999px;background:var(--cream);border:1px solid var(--stone-border);font-size:.88rem;color:var(--near-black);font-variant-numeric:tabular-nums}
+.logrow:last-child span:first-child{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--deep-sage)}
+.logrow:last-child span:last-child{background:var(--slate);border-color:var(--slate);color:var(--cream);font-weight:600}
 /* Contact: the aerial photo is the page background; its top third fades into the cream page so the
    title sits on a clean ground, and the cards float centered over the photo */
 .contact-page{background:linear-gradient(to bottom,var(--cream) 0%,color-mix(in srgb,var(--cream) 0%,transparent) 33%) top/100% 100% no-repeat,url("img/dji-0853-bf1c23.webp") center 70%/cover no-repeat,var(--cream);display:flex;flex-direction:column;min-height:calc(100svh - 8rem);padding-bottom:clamp(1rem,3vw,2rem)}
@@ -242,9 +251,6 @@ a.ccontact-main:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
 .ctag{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase}
 .cphotos img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:.9rem}
 .cphotos .ph{width:100%;aspect-ratio:3/1;border-radius:.9rem}
-/* Experience: skills card beside the flight log */
-.skills{background:var(--warm-stone);border-radius:1rem;padding:clamp(1.25rem,3vw,2rem)}
-.skills h2{margin:0 0 1.1rem}
 .skill-group+.skill-group{margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--stone-border)}
 .skills h3{margin:0 0 .7rem;font-size:.72rem;font-family:inherit;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--deep-sage)}
 .chips{display:flex;flex-wrap:wrap;gap:.45rem;margin:0;padding:0;list-style:none}
