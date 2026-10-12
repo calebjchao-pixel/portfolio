@@ -276,3 +276,7 @@ p{margin:0 0 1em;max-width:62ch}
 /* tablet: two columns; phone: one */
 @media(max-width:900px){.sm{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.sm{grid-template-columns:1fr}}
+/* Downtown Sacramento: same grid at the photos' native 3:2, led by one photo across the full width */
+.sm-32 .sm-item img{aspect-ratio:3/2}
+.sm-32 .sm-feat{grid-column:1/-1}
+.sm-32 .sm-feat img{aspect-ratio:16/9}
