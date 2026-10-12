@@ -12,18 +12,33 @@
   <ul><li><a href="index.html">Home</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="experience.html">Experience</a></li><li><a href="contact.html" aria-current="page">Contact</a></li></ul>
 </nav>
 <main id="main">
-<div class="page-top"><h1>Contact</h1><p>Based in Yuba City, CA.</p></div>
+<div class="page-top"><h1>Contact</h1><p>Email is the fastest way to reach me.</p></div>
 <section class="band">
-  <div class="split" style="align-items:start">
-    <div>
-      <h2>Get in touch</h2>
-      <p class="contact-lines">
-        <a href="tel:+15303001915">+1 (530) 300-1915</a><br>
-        <a href="mailto:calebjchao@gmail.com">calebjchao@gmail.com</a>
-      </p>
-      <p>Email is the fastest way to reach me.</p>
+  <div class="contact">
+    <img class="contact-photo" src="img/dji-0853-bf1c23.webp" alt="A river bend beside a highway and open fields, seen from the air">
+    <div class="contact-cards">
+      <div class="ccontact">
+        <a class="ccontact-main" href="mailto:calebjchao@gmail.com">
+          <span class="ccontact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+          <span class="ccontact-text"><em>Email</em><strong>calebjchao@gmail.com</strong></span>
+          <span class="ccontact-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
+        </a>
+        <button class="ccontact-copy" type="button" data-copy="calebjchao@gmail.com" aria-label="Copy email address" title="Copy email address" hidden><svg class="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><svg class="i-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></button>
+      </div>
+      <div class="ccontact">
+        <a class="ccontact-main" href="tel:+15303001915">
+          <span class="ccontact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span>
+          <span class="ccontact-text"><em>Phone</em><strong>+1 (530) 300-1915</strong></span>
+          <span class="ccontact-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
+        </a>
+      </div>
+      <div class="ccontact">
+        <div class="ccontact-main">
+          <span class="ccontact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
+          <span class="ccontact-text"><em>Based in</em><strong>Yuba City, California</strong></span>
+        </div>
+      </div>
     </div>
-    <img class="portrait" src="img/dji-0853-bf1c23.webp" alt="" loading="lazy">
   </div>
 </section>
 </main>
@@ -34,4 +49,18 @@
   <p class="end">&copy; 2026 Caleb Chao</p>
 </footer>
 
+<script>
+// The copy button puts the address on the clipboard and shows a check for a moment; it only appears where the Clipboard API is available.
+document.querySelectorAll('[data-copy]').forEach(btn => {
+  if (!navigator.clipboard) return;
+  btn.hidden = false;
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(btn.dataset.copy);
+      btn.classList.add('done'); btn.setAttribute('aria-label', 'Email address copied');
+      setTimeout(() => { btn.classList.remove('done'); btn.setAttribute('aria-label', 'Copy email address'); }, 1800);
+    } catch {}
+  });
+});
+</script>
 </body></html>
