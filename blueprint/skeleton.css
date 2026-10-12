@@ -129,11 +129,13 @@ p{margin:0 0 1em;max-width:62ch}
 .log{max-width:34rem}
 .logrow{display:flex;justify-content:space-between;gap:1rem;padding:.65rem 0;border-bottom:1px solid var(--rule)}
 .logrow span:first-child{font-weight:700}
-/* Contact: aerial photo beside large contact cards; stacked on narrow screens */
-.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(1.25rem,3vw,2.5rem);align-items:stretch}
-.contact-photo{width:100%;height:100%;min-height:420px;object-fit:cover;border-radius:1rem}
+/* Contact: the aerial photo is the page background; its top third fades into the cream page so the
+   title sits on a clean ground, and the cards float centered over the photo */
+.contact-page{background:linear-gradient(to bottom,var(--cream) 0%,color-mix(in srgb,var(--cream) 0%,transparent) 33%) top/100% 100% no-repeat,url("img/dji-0853-bf1c23.webp") center 70%/cover no-repeat,var(--cream);padding-bottom:clamp(6rem,18vw,14rem)}
+.contact-page .band{border:0}
+.contact{max-width:600px;margin:0 auto}
 .contact-cards{display:grid;gap:clamp(.75rem,1.6vw,1rem);align-content:center}
-.ccontact{position:relative;border-radius:1rem;background:var(--warm-stone);transition:background .25s,color .25s}
+.ccontact{position:relative;border-radius:1rem;background:var(--warm-stone);box-shadow:0 10px 30px -12px rgba(19,32,26,.45);transition:background .25s,color .25s}
 .ccontact-main{display:flex;align-items:center;gap:1rem;padding:clamp(1.1rem,2.4vw,1.6rem);color:var(--near-black);text-decoration:none;border-radius:inherit}
 a.ccontact-main:hover{text-decoration:none}
 .ccontact:has(a.ccontact-main:hover){background:var(--slate)}
@@ -159,7 +161,6 @@ a.ccontact-main:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
 .ccontact:has(.ccontact-copy:not([hidden])) .ccontact-text{padding-right:3.1rem}
 /* phones: the whole card is the link, so drop the arrow and give the address the room */
 @media(max-width:480px){.ccontact-go{display:none}.ccontact-copy{right:clamp(1.1rem,2.4vw,1.6rem)}.ccontact-main{gap:.8rem}.ccontact-icon{width:2.5rem}}
-@media(max-width:860px){.contact{grid-template-columns:1fr}.contact-photo{min-height:0;height:auto;aspect-ratio:16/9}}
 
 /* footer: beige with the accent rule on top, as the original's border */
 .foot{display:grid;grid-template-columns:repeat(3,max-content);justify-content:start;gap:1.4rem clamp(2rem,6vw,5rem);
