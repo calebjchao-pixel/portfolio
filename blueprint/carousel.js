@@ -12,8 +12,9 @@ document.querySelectorAll('.rail-band').forEach(band => {
   if (originals.length < 2) return;
   const cloneSet = () => originals.map(li => {
     const c = li.cloneNode(true);
+    // hidden from screen readers and the tab order, but still clickable: the visible card is often a clone
     c.setAttribute('aria-hidden', 'true');
-    c.inert = true;
+    c.querySelectorAll('a, button').forEach(el => el.setAttribute('tabindex', '-1'));
     return c;
   });
   const before = cloneSet(), after = cloneSet();
