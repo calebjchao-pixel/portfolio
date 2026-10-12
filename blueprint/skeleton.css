@@ -135,35 +135,29 @@ p{margin:0 0 1em;max-width:62ch}
 /* the cards sit at the bottom of the page, over the photo */
 .contact-page .band{margin-top:auto;border:0;padding-top:clamp(8rem,22vw,16rem);padding-bottom:clamp(1.5rem,4vw,3rem)}
 .contact{max-width:1000px;margin:0 auto}
-/* email and phone side by side; stacked once the address would get cramped */
-.contact-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(.75rem,1.6vw,1rem);align-content:center}
-@media(max-width:980px){.contact-cards{grid-template-columns:1fr;max-width:600px;margin:0 auto}}
-.ccontact{position:relative;border-radius:1rem;background:var(--warm-stone);box-shadow:0 10px 30px -12px rgba(19,32,26,.45);transition:background .25s,color .25s}
-.ccontact-main{display:flex;align-items:center;gap:1rem;padding:clamp(1.1rem,2.4vw,1.6rem);color:var(--near-black);text-decoration:none;border-radius:inherit}
+/* email and phone side by side, each card only as wide as its one line of text; they wrap onto two rows when there isn't room */
+.contact-cards{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(.75rem,1.6vw,1rem)}
+.ccontact{display:flex;align-items:center;max-width:100%;border-radius:1rem;background:var(--warm-stone);box-shadow:0 10px 30px -12px rgba(19,32,26,.45);transition:background .25s,color .25s}
+.ccontact-main{display:flex;align-items:center;gap:1rem;padding:clamp(1rem,2.2vw,1.4rem);padding-right:.9rem;color:var(--near-black);text-decoration:none;border-radius:inherit;min-width:0}
 a.ccontact-main:hover{text-decoration:none}
 .ccontact:has(a.ccontact-main:hover){background:var(--slate)}
 .ccontact:has(a.ccontact-main:hover) .ccontact-main{color:var(--cream)}
 .ccontact:has(a.ccontact-main:hover) .ccontact-text em{color:var(--pale-sage)}
 a.ccontact-main:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
-.ccontact-icon{flex:none;display:grid;place-items:center;width:2.9rem;aspect-ratio:1;border-radius:50%;background:var(--cream);color:var(--slate)}
-.ccontact-icon svg{width:1.3rem;height:1.3rem}
-.ccontact-text{display:grid;gap:.2rem;min-width:0;flex:1}
+.ccontact-icon{flex:none;display:grid;place-items:center;width:2.75rem;aspect-ratio:1;border-radius:50%;background:var(--cream);color:var(--slate)}
+.ccontact-icon svg{width:1.25rem;height:1.25rem}
+.ccontact-text{display:grid;gap:.2rem;min-width:0}
 .ccontact-text em{font-style:normal;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--deep-sage);transition:color .25s}
-.ccontact-text strong{font-family:var(--display);font-weight:500;font-size:clamp(1rem,.85rem + .7vw,1.35rem);line-height:1.25;overflow-wrap:anywhere}
-.ccontact-go{flex:none;display:grid;place-items:center;width:2.6rem;aspect-ratio:1;border-radius:50%;background:var(--near-black);color:var(--cream);transition:background .25s}
-.ccontact-go svg{width:45%;height:45%;transition:transform .25s}
-.ccontact:has(a.ccontact-main:hover) .ccontact-go{background:var(--cream);color:var(--slate)}
-.ccontact:has(a.ccontact-main:hover) .ccontact-go svg{transform:translate(2px,-2px)}
-/* round copy button inside the email card, just left of the arrow; the text leaves room for it */
-.ccontact-copy{position:absolute;top:50%;right:calc(clamp(1.1rem,2.4vw,1.6rem) + 2.6rem + .5rem);translate:0 -50%;display:grid;place-items:center;width:2.6rem;aspect-ratio:1;padding:0;border:1px solid var(--stone-border);border-radius:50%;background:var(--cream);color:var(--slate);cursor:pointer;transition:background .2s,color .2s}
+.ccontact-text strong{font-family:var(--display);font-weight:500;font-size:clamp(1rem,.85rem + .7vw,1.35rem);line-height:1.25;white-space:nowrap}
+/* round copy button at the end of each card */
+.ccontact-copy{flex:none;display:grid;place-items:center;width:2.6rem;aspect-ratio:1;margin-right:clamp(1rem,2.2vw,1.4rem);padding:0;border:1px solid var(--stone-border);border-radius:50%;background:var(--cream);color:var(--slate);cursor:pointer;transition:background .2s,color .2s}
 .ccontact-copy svg{width:1.05rem;height:1.05rem}
 .ccontact-copy .i-done,.ccontact-copy.done .i-copy{display:none}
 .ccontact-copy.done .i-done{display:block}
 .ccontact-copy:hover{background:var(--slate);color:var(--cream);border-color:var(--slate)}
+.ccontact:has(a.ccontact-main:hover) .ccontact-copy{border-color:transparent}
 .ccontact-copy:focus-visible{outline:2px solid var(--slate);outline-offset:2px}
-.ccontact:has(.ccontact-copy:not([hidden])) .ccontact-text{padding-right:3.1rem}
-/* phones: the whole card is the link, so drop the arrow and give the address the room */
-@media(max-width:480px){.ccontact-go{display:none}.ccontact-copy{right:clamp(1.1rem,2.4vw,1.6rem)}.ccontact-main{gap:.8rem}.ccontact-icon{width:2.5rem}}
+@media(max-width:480px){.ccontact-main{gap:.75rem}.ccontact-icon{width:2.4rem}}
 
 /* footer: beige with the accent rule on top, as the original's border */
 .foot{display:grid;grid-template-columns:repeat(3,max-content);justify-content:start;gap:1.4rem clamp(2rem,6vw,5rem);
