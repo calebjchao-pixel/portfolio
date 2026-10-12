@@ -6,6 +6,7 @@
   --near-black:#13201A;--slate:#214534;--sage:#607D6E;--cream:#F3EFEA;
   --deep-sage:#4F6A5D;--light-sage:#A8BAB0;--soft-sage:#8FA99B;--pale-sage:#B4C2BA;
   --mist:#C3CEC7;--warm-stone:#E7E1D8;--stone-border:#D2C9BC;--light-stone:#DDD5CA;--white:#FFFFFF;
+  --nav-red:#D90F1C; /* bright red for the page links; the brightest that still meets AA on cream (the slide-in header over photos uses a lighter #FF4040) */
   /* roles */
   --paper:var(--cream);--alt:var(--warm-stone);--ink:var(--near-black);--dim:var(--deep-sage);
   --chrome:var(--slate);--link:var(--slate);--link-hover:var(--near-black);--accent:var(--sage);
@@ -50,8 +51,7 @@ p{margin:0 0 1em;max-width:62ch}
 .bar-nav.over::before{content:"";position:absolute;inset:0 0 -60% 0;z-index:-1;pointer-events:none;
   background:linear-gradient(to bottom,rgba(19,32,26,.72) 0%,rgba(19,32,26,.45) 55%,rgba(19,32,26,0) 100%)}
 .bar-nav.over .logo-sig{filter:drop-shadow(0 1px 4px rgba(0,0,0,.4))}
-.bar-nav.over li a{color:var(--light-sage);text-shadow:0 1px 6px rgba(0,0,0,.45)}
-.bar-nav.over li a[aria-current]{color:var(--white)}
+.bar-nav.over li a{color:#FF4040;text-shadow:0 1px 6px rgba(0,0,0,.45)}
 .bar-nav.over .logo{width:clamp(130px,12vw,170px)}
 .bar-nav.over ul{padding-top:0}
 /* header logo = the hero lockup scaled down: same stroke weight, same tucked-in role line, same type metrics */
@@ -61,7 +61,7 @@ p{margin:0 0 1em;max-width:62ch}
 .logo-sig path{fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 .logo-role{margin-top:-7cqi;width:100%;text-align:center;padding-left:.42em;font-family:var(--display);font-weight:400;font-size:4.3cqi;line-height:1;letter-spacing:.42em;text-transform:uppercase;white-space:nowrap}
 .bar-nav ul{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.4rem clamp(.9rem,2.5vw,2rem);margin:0;padding:.3rem 0 0;list-style:none;font-size:.95rem}
-.bar-nav li a{color:var(--slate);text-decoration:none;padding-bottom:3px;border-bottom:1px solid transparent;transition:opacity .2s,border-color .2s}
+.bar-nav li a{color:var(--nav-red);text-decoration:none;padding-bottom:3px;border-bottom:1px solid transparent;transition:opacity .2s,border-color .2s}
 .bar-nav li a:hover{opacity:.7}
 .bar-nav li a[aria-current]{border-bottom-color:currentColor}
 
