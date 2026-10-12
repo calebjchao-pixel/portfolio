@@ -280,3 +280,6 @@ p{margin:0 0 1em;max-width:62ch}
 .sm-32 .sm-item img{aspect-ratio:3/2}
 .sm-32 .sm-feat{grid-column:1/-1}
 .sm-32 .sm-feat img{aspect-ratio:16/9}
+/* Core Charter: the same grid in two columns (one on phones) */
+.sm.sm-2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:560px){.sm.sm-2{grid-template-columns:1fr}}

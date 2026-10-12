@@ -14,7 +14,7 @@
 <main id="main">
 <nav class="crumb" aria-label="Breadcrumb"><a class="back" href="gallery.html">&larr; All collections</a></nav>
 <div class="page-top"><h1>Core Charter Class of &rsquo;26</h1><p class="ctag">Event Photography</p></div>
-<section class="band"><div class="g2 cphotos"><img src="img/dji-20260120125354-0008-v-2-0b9edb.webp" alt="Core Charter class of 2026 forming a shape on a lawn, seen from above" loading="lazy"></div></section>
+<section class="band"><div class="sm sm-2"><a class="sm-item" href="img/cc-c21.webp" data-lb><img src="img/cc-c21.webp" alt="Core Charter's class of 2026 standing on a lawn to spell out 26, seen from straight above"></a><a class="sm-item" href="img/cc-c44.webp" data-lb><img src="img/cc-c44.webp" alt="The class of 2026 forming a 26 on the lawn beside a parking lot, looking up at the drone"></a><a class="sm-item" href="img/cc-c29.webp" data-lb><img src="img/cc-c29.webp" alt="The class posed in rows on a pavement bend beside a pond" loading="lazy"></a><a class="sm-item" href="img/cc-c28.webp" data-lb><img src="img/cc-c28.webp" alt="The class seated along a lakeside road, with homes and trees beyond" loading="lazy"></a></div></section>
 </main>
 <footer class="foot">
   <div><p class="mark">Caleb Chao</p><p>FAA Part 107 Remote Pilot &amp; Operations Lead<br>Yuba City, CA</p></div>
@@ -23,4 +23,25 @@
   <p class="end">&copy; 2026 Caleb Chao</p>
 </footer>
 
+<dialog class="lb" aria-label="Photo viewer">
+  <img alt="">
+  <button class="lb-x" type="button" aria-label="Close">&times;</button>
+  <button class="lb-prev" type="button" aria-label="Previous photo">&larr;</button>
+  <button class="lb-next" type="button" aria-label="Next photo">&rarr;</button>
+</dialog>
+<script>
+// Favorites open full size in a dialog; without JS each tile is a plain link to the image.
+(() => {
+  const links = [...document.querySelectorAll('[data-lb]')], dlg = document.querySelector('.lb');
+  if (!dlg || !dlg.showModal) return;
+  const img = dlg.querySelector('img'); let i = 0;
+  const show = n => { i = (n + links.length) % links.length; img.src = links[i].href; img.alt = links[i].querySelector('img').alt; };
+  links.forEach((a, n) => a.addEventListener('click', e => { e.preventDefault(); show(n); dlg.showModal(); }));
+  dlg.querySelector('.lb-x').onclick = () => dlg.close();
+  dlg.querySelector('.lb-prev').onclick = () => show(i - 1);
+  dlg.querySelector('.lb-next').onclick = () => show(i + 1);
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); });
+})();
+</script>
 </body></html>
