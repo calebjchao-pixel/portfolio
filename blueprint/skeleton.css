@@ -131,8 +131,9 @@ p{margin:0 0 1em;max-width:62ch}
 .logrow span:first-child{font-weight:700}
 /* Contact: the aerial photo is the page background; its top third fades into the cream page so the
    title sits on a clean ground, and the cards float centered over the photo */
-.contact-page{background:linear-gradient(to bottom,var(--cream) 0%,color-mix(in srgb,var(--cream) 0%,transparent) 33%) top/100% 100% no-repeat,url("img/dji-0853-bf1c23.webp") center 70%/cover no-repeat,var(--cream);padding-bottom:clamp(6rem,18vw,14rem)}
-.contact-page .band{border:0}
+.contact-page{background:linear-gradient(to bottom,var(--cream) 0%,color-mix(in srgb,var(--cream) 0%,transparent) 33%) top/100% 100% no-repeat,url("img/dji-0853-bf1c23.webp") center 70%/cover no-repeat,var(--cream);display:flex;flex-direction:column;min-height:calc(100svh - 8rem);padding-bottom:clamp(1rem,3vw,2rem)}
+/* the cards sit at the bottom of the page, over the photo */
+.contact-page .band{margin-top:auto;border:0;padding-top:clamp(8rem,22vw,16rem);padding-bottom:clamp(1.5rem,4vw,3rem)}
 .contact{max-width:600px;margin:0 auto}
 .contact-cards{display:grid;gap:clamp(.75rem,1.6vw,1rem);align-content:center}
 .ccontact{position:relative;border-radius:1rem;background:var(--warm-stone);box-shadow:0 10px 30px -12px rgba(19,32,26,.45);transition:background .25s,color .25s}
