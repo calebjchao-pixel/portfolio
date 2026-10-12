@@ -73,9 +73,13 @@ p{margin:0 0 1em;max-width:62ch}
 .btn:hover{background:var(--near-black);border-color:var(--near-black);text-decoration:none}
 
 /* hero */
-/* hero fills the first screen exactly (svh keeps it right under mobile browser bars) */
-.hero{min-height:100vh;min-height:100svh;background:linear-gradient(rgba(10,14,18,.35),rgba(10,14,18,.35)),url(img/hero-lake.webp) center 50%/cover no-repeat;
-  display:grid;place-items:center;padding:var(--gut)}
+/* hero fills the first screen exactly (svh keeps it right under mobile browser bars), then the photo runs
+   on for --fade below the fold and eases into the page colour, so the fade only shows once you scroll.
+   The fade (smoothstep stops, so there is no line where it starts) sits above the dark tint, so it ends on pure cream. */
+.hero{--fade:clamp(140px,24vh,260px);min-height:calc(100vh + var(--fade));min-height:calc(100svh + var(--fade));
+  background:linear-gradient(to bottom,transparent calc(100% - var(--fade)),rgba(243,239,234,0.043) calc(100% - var(--fade)*0.875),rgba(243,239,234,0.156) calc(100% - var(--fade)*0.750),rgba(243,239,234,0.316) calc(100% - var(--fade)*0.625),rgba(243,239,234,0.500) calc(100% - var(--fade)*0.500),rgba(243,239,234,0.684) calc(100% - var(--fade)*0.375),rgba(243,239,234,0.844) calc(100% - var(--fade)*0.250),rgba(243,239,234,0.957) calc(100% - var(--fade)*0.125),rgba(243,239,234,1.000) 100%),
+    linear-gradient(rgba(10,14,18,.35),rgba(10,14,18,.35)),url(img/hero-lake.webp) center 40%/cover no-repeat;
+  display:grid;place-items:center;padding:var(--gut) var(--gut) calc(var(--gut) + var(--fade))}
 .title{width:min(90vw,760px);container-type:inline-size;display:grid;justify-items:center}
 .hero h1{width:100%;line-height:0;text-decoration:none}
 .sig{width:100%;height:auto;overflow:visible;filter:drop-shadow(0 2px 14px rgba(0,0,0,.5))}
