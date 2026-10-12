@@ -215,6 +215,14 @@ p{margin:0 0 1em;max-width:62ch}
 /* Experience: the About me bio, kept to a comfortable reading width */
 .bio{max-width:68ch}
 .bio p:last-child{margin-bottom:0}
+/* bio beside the skills list; stacked on narrow screens */
+.xp-top{display:grid;grid-template-columns:minmax(0,68ch) minmax(0,1fr);gap:clamp(2rem,5vw,4.5rem);align-items:start}
+@media(max-width:860px){.xp-top{grid-template-columns:1fr}}
+.skills h3{margin:1.4rem 0 .5rem;font-size:.75rem;font-family:inherit;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--sage)}
+.skills h2+h3{margin-top:.4rem}
+.skills ul{margin:0;padding-left:1.1rem}
+.skills li{margin:.3rem 0}
+.skills li::marker{color:var(--sage)}
 .cvideo{display:block;width:100%;max-width:1200px;height:auto;aspect-ratio:16/9;margin:0 auto;border-radius:.9rem;background:var(--near-black)}
 /* film-style credits under the video: small uppercase role, names beside it; names stack on phones */
 .credits{display:grid;gap:.5rem;width:max-content;max-width:100%;margin:clamp(1.25rem,3vw,2rem) auto 0}
