@@ -212,12 +212,7 @@ p{margin:0 0 1em;max-width:62ch}
 .ctag{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase}
 .cphotos img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:.9rem}
 .cphotos .ph{width:100%;aspect-ratio:3/1;border-radius:.9rem}
-/* Experience: the About me bio, kept to a comfortable reading width */
-.bio{max-width:68ch}
-.bio p:last-child{margin-bottom:0}
-/* bio beside a skills card; stacked on narrow screens */
-.xp-top{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(2rem,5vw,4.5rem);align-items:start}
-@media(max-width:860px){.xp-top{grid-template-columns:1fr}}
+/* Experience: skills card beside the flight log */
 .skills{background:var(--warm-stone);border-radius:1rem;padding:clamp(1.25rem,3vw,2rem)}
 .skills h2{margin:0 0 1.1rem}
 .skill-group+.skill-group{margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--stone-border)}
