@@ -228,12 +228,13 @@ p{margin:0 0 1em;max-width:62ch}
 .mosaic .m{grid-column:span 2;display:block;aspect-ratio:3/2;overflow:hidden;border-radius:.7rem;background:var(--warm-stone)}
 .mosaic .m.big{grid-column:span 4;grid-row:span 2;aspect-ratio:auto;contain:size}
 .mosaic .m.big.r{grid-column:3 / span 4}
+.mosaic .m.half{grid-column:span 3}
 .mosaic img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
 .mosaic .m:hover img{transform:scale(1.04)}
 .mosaic .m:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
 @media(max-width:640px){
   .mosaic{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .mosaic .m{grid-column:span 1}
+  .mosaic .m,.mosaic .m.half{grid-column:span 1}
   /* on phones a feature sits on its own full-width row, so it sets its own 3:2 height */
   .mosaic .m.big,.mosaic .m.big.r{grid-column:1 / -1;grid-row:auto;aspect-ratio:3/2;contain:none}
 }
