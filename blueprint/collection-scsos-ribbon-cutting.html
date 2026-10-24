@@ -14,7 +14,10 @@
 <main id="main">
 <nav class="crumb" aria-label="Breadcrumb"><a class="back" href="gallery.html">&larr; All collections</a></nav>
 <div class="page-top"><h1>SCSOS Ribbon Cutting</h1><p class="ctag">Event Footage</p></div>
-<section class="band"><div class="g2 cphotos"><img src="img/dji-20260325122133-0013-v-2-fe1f80.webp" alt="Crowd at the SCSOS building ribbon cutting, seen from above" loading="lazy"><img src="img/dji-20260325124029-0001-v-2-9e9817.webp" alt="The Superintendent of Schools career training and conference center sign" loading="lazy"></div></section>
+<section class="band"><video class="cvideo" controls playsinline preload="metadata" poster="img/scsos-ribbon-cutting-poster.webp" width="1280" height="720">
+  <source src="img/scsos-ribbon-cutting.mp4" type="video/mp4">
+  <a href="img/scsos-ribbon-cutting.mp4">Download the SCSOS Ribbon Cutting video</a>
+</video></section>
 </main>
 <footer class="foot">
   <div><p class="mark">Caleb Chao</p><p>FAA Part 107 Remote Pilot &amp; Operations Lead<br>Yuba City, CA</p></div>
@@ -23,4 +26,5 @@
   <p class="end">&copy; 2026 Caleb Chao</p>
 </footer>
 
+<script>document.querySelectorAll('.cvideo').forEach(v => { v.volume = 0.25; });</script>
 </body></html>
