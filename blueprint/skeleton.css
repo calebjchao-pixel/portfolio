@@ -358,9 +358,23 @@ a.ccontact-main:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
 .sm.sm-row{grid-template-columns:repeat(4,1fr);max-width:none}
 @media(max-width:900px){.sm.sm-row{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.sm.sm-row{grid-template-columns:1fr}}
-/* Blackburn Talley: the low-angle model view across the top, the two others side by side below; dark tiles match the Pix4D backdrop */
-.sm.bt-map{grid-template-columns:1fr 1fr}
-.bt-map .sm-item{background:#000}
-.bt-map .sm-item img{aspect-ratio:1824/1146}
-.bt-map .sm-feat{grid-column:1/-1}
-@media(max-width:560px){.sm.bt-map{grid-template-columns:1fr}}
+/* Blackburn Talley: the top-down model large in the middle, the three Pix4D processing views stacked on the
+   left and the two other model views on the right (wider, as those are landscape). Six equal row tracks: left
+   tiles span two, right tiles three. Every image is shown whole (contain) on a tile the colour of its own
+   backdrop (the model screenshots are trimmed to the model). Like Downtown Sacramento, the block (about 2x as
+   wide as tall) is capped to fit one screen. */
+.sm.bt-map{grid-template-columns:1fr 3fr 2fr;grid-template-rows:repeat(6,1fr);aspect-ratio:2.05;max-width:min(100%,calc((100svh - 360px) * 2.05))}
+.band:has(.bt-map){padding-top:clamp(1rem,2.5vw,1.75rem)}
+.bt-map .sm-item{background:#000;min-height:0}
+.bt-map .sm-item img{width:100%;height:100%;aspect-ratio:auto;object-fit:contain}
+.bt-map .sm-feat{grid-column:2;grid-row:1/-1}
+.bt-map .bt-l:nth-child(2){grid-area:1/1/3/2}.bt-map .bt-l:nth-child(3){grid-area:3/1/5/2}.bt-map .bt-l:nth-child(4){grid-area:5/1/7/2}
+.bt-map .bt-r:nth-child(5){grid-area:1/3/4/4}.bt-map .bt-r:nth-child(6){grid-area:4/3/7/4}
+.bt-map .bt-white{background:#fff}
+.bt-map .bt-mint{background:#E1FFE1}
+@media(max-width:760px){.sm.bt-map{grid-template-columns:1fr 1fr;grid-template-rows:none;aspect-ratio:auto;max-width:none}
+  .bt-map .sm-item.sm-item{grid-area:auto}
+  .bt-map .sm-item.sm-feat{grid-column:1/-1}
+  .bt-map .sm-item.sm-item:last-child{grid-column:1/-1}.bt-map .sm-item:last-child img{aspect-ratio:626/512}
+  .bt-map .sm-item img{aspect-ratio:4/3;height:auto}
+  .bt-map .sm-feat img{aspect-ratio:1}}
