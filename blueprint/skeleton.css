@@ -40,7 +40,7 @@ p{margin:0 0 1em;max-width:62ch}
 /* invisible header: no bar, no rule, no background; just the logo lockup and the page links */
 .bar-nav{position:relative;z-index:5;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem 2rem;flex-wrap:wrap;
   padding:clamp(1rem,2.4vw,1.6rem) var(--gut);color:var(--ink)}
-/* home: hidden over the hero, slides down once the hero has scrolled away (header.js toggles .show) */
+/* home: hidden at first; the bar slides down a moment after the hero animation (header.js adds .show) */
 .bar-nav.over{position:fixed;top:0;left:0;right:0;background:none;
   transform:translateY(-100%);visibility:hidden;transition:transform .45s cubic-bezier(.2,.7,.2,1),visibility 0s linear .45s}
 .bar-nav.over.show{transform:none;visibility:visible;transition:transform .45s cubic-bezier(.2,.7,.2,1),visibility 0s}
@@ -53,6 +53,9 @@ p{margin:0 0 1em;max-width:62ch}
 .bar-nav.over li a{color:var(--light-sage);text-shadow:0 1px 6px rgba(0,0,0,.45)}
 .bar-nav.over li a[aria-current]{color:var(--white)}
 .bar-nav.over .logo{width:clamp(130px,12vw,170px)}
+/* ...but its logo waits until the hero has scrolled out of view (header.js toggles .logo-in) */
+.bar-nav.over .logo{transform:translateY(-160%);visibility:hidden;transition:transform .45s cubic-bezier(.2,.7,.2,1),visibility 0s linear .45s}
+.bar-nav.over.logo-in .logo{transform:none;visibility:visible;transition:transform .45s cubic-bezier(.2,.7,.2,1),visibility 0s}
 .bar-nav.over ul{padding-top:0}
 /* header logo = the hero lockup scaled down: same stroke weight, same tucked-in role line, same type metrics */
 .logo{display:grid;justify-items:center;width:clamp(160px,17vw,230px);container-type:inline-size;color:inherit;text-decoration:none}
@@ -184,7 +187,7 @@ a.ccontact-main:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
 
 @media(max-width:780px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.split,.g2{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
 @media(max-width:460px){.g3,.g4{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar-nav.over,.bar-nav.over.show{transition:none}.sig path{animation:none;stroke-dashoffset:0;opacity:1}.role span{animation:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar-nav.over,.bar-nav.over.show,.bar-nav.over .logo{transition:none}.sig path{animation:none;stroke-dashoffset:0;opacity:1}.role span{animation:none}}
 
 /* about: a large 2:3 headshot with three small landscape photos overlapping its edges (top-right corner,
    left edge, bottom-left), and the profile card overlapping its lower right so text and photo read as one unit.
