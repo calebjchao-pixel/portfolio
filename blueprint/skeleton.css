@@ -327,3 +327,27 @@ a.ccontact-main:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
 /* Core Charter: the same grid in two columns (one on phones) */
 .sm.sm-2{grid-template-columns:repeat(2,1fr)}
 @media(max-width:560px){.sm.sm-2{grid-template-columns:1fr}}
+/* Sutter Buttes: the 3 x 2 grid runs the full page width */
+.sm.sm-full{max-width:none}
+/* Downtown Sacramento: the large photo in the middle with three stacked on each side; the whole block is
+   about 2.4x as wide as it is tall, so its width is capped to keep it within one screen */
+.band:has(.ds-split){padding-top:clamp(1rem,2.5vw,1.75rem)}
+.sm.ds-split{grid-template-columns:1fr 3fr 1fr;max-width:min(100%,calc((100svh - 385px) * 2.4))}
+.ds-split .sm-item img{aspect-ratio:3/2}
+.ds-split .sm-feat{grid-area:1/2/4/3;contain:size}
+.ds-split .sm-feat img{height:100%;aspect-ratio:auto}
+.ds-split .sm-item:nth-child(2){grid-area:1/1}.ds-split .sm-item:nth-child(3){grid-area:2/1}.ds-split .sm-item:nth-child(4){grid-area:3/1}
+.ds-split .sm-item:nth-child(5){grid-area:1/3}.ds-split .sm-item:nth-child(6){grid-area:2/3}.ds-split .sm-item:nth-child(7){grid-area:3/3}
+@media(max-width:760px){.sm.ds-split{grid-template-columns:1fr 1fr;max-width:none}
+  .ds-split .sm-feat{grid-area:auto;grid-column:1/-1;contain:none}.ds-split .sm-feat img{height:auto;aspect-ratio:3/2}
+  .ds-split .sm-item:nth-child(n+2){grid-area:auto}}
+/* Core Charter: all four photos in one straight row (two by two on tablets, one column on phones) */
+.sm.sm-row{grid-template-columns:repeat(4,1fr);max-width:none}
+@media(max-width:900px){.sm.sm-row{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.sm.sm-row{grid-template-columns:1fr}}
+/* Blackburn Talley: the low-angle model view across the top, the two others side by side below; dark tiles match the Pix4D backdrop */
+.sm.bt-map{grid-template-columns:1fr 1fr}
+.bt-map .sm-item{background:#000}
+.bt-map .sm-item img{aspect-ratio:1824/1146}
+.bt-map .sm-feat{grid-column:1/-1}
+@media(max-width:560px){.sm.bt-map{grid-template-columns:1fr}}
