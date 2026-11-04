@@ -308,9 +308,19 @@ a.ccontact-main:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
 /* collection pages: back link sits top-left on the page gutter, above the centered title */
 .crumb{padding:clamp(.5rem,1.5vw,1rem) var(--gut) 0}
 .crumb .back{margin:0}
+/* collection pages: "All collections" sits on the title's row, at the left; the title stays centered
+   (equal fixed side columns, so long titles wrap rather than drift off center) and the photos follow right below. Stacked on narrow screens. */
+.coll-top{--side:7.5rem;display:grid;grid-template-columns:var(--side) minmax(0,1fr) var(--side);align-items:center;gap:1rem;
+  padding-top:clamp(.5rem,1.5vw,1rem);margin-bottom:0}
+.coll-top .crumb{padding:0;justify-self:start}
+.coll-top h1{grid-column:2;margin:0;font-size:clamp(2rem,1.2rem + 2.6vw,3.25rem)}
+.coll-top::after{content:""}
+.ig .coll-top{padding-top:0;margin-bottom:clamp(1.25rem,3vw,2rem)}
+.page-top.coll-top+.band{padding-top:clamp(1.25rem,3vw,2rem)}
+@media(max-width:760px){.coll-top{grid-template-columns:1fr;justify-items:center}.coll-top .crumb{justify-self:start}.coll-top h1{grid-column:1}.coll-top::after{content:none}}
 
 /* ---- Sutter Buttes: title above a 3 x 2 grid of 4:3 photos; each opens in the viewer ---- */
-.ig{padding:clamp(1rem,3vw,2rem) var(--gut) var(--band)}
+.ig{padding:clamp(.5rem,1.5vw,1rem) var(--gut) var(--band)}
 .ig-title{text-align:center;margin:0 0 clamp(1.5rem,4vw,2.5rem)}
 .sm{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.6rem,1.4vw,1rem);max-width:1200px;margin:0 auto}
 .sm-item{display:block;overflow:hidden;border-radius:.9rem;background:var(--warm-stone)}
@@ -332,7 +342,7 @@ a.ccontact-main:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
 /* Downtown Sacramento: the large photo in the middle with three stacked on each side; the whole block is
    about 2.4x as wide as it is tall, so its width is capped to keep it within one screen */
 .band:has(.ds-split){padding-top:clamp(1rem,2.5vw,1.75rem)}
-.sm.ds-split{grid-template-columns:1fr 3fr 1fr;max-width:min(100%,calc((100svh - 385px) * 2.4))}
+.sm.ds-split{grid-template-columns:1fr 3fr 1fr;max-width:min(100%,calc((100svh - 330px) * 2.4))}
 .ds-split .sm-item img{aspect-ratio:3/2}
 .ds-split .sm-feat{grid-area:1/2/4/3;contain:size}
 .ds-split .sm-feat img{height:100%;aspect-ratio:auto}
