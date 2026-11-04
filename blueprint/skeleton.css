@@ -184,6 +184,8 @@ a.ccontact-main:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
 .foot a:hover{color:var(--white);text-decoration:underline}
 .foot p{color:var(--mist);margin:.3rem 0 0}
 .foot .end{grid-column:1/-1;border-top:1px solid var(--deep-sage);padding-top:1.2rem;font-size:.82rem;color:var(--mist)}
+.foot .credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.foot .credit a:hover{color:var(--cream)}
 
 @media(max-width:780px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.split,.g2{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
 @media(max-width:460px){.g3,.g4{grid-template-columns:1fr}}
