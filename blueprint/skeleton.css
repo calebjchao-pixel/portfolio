@@ -234,6 +234,8 @@ a.ccontact-main:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
 .ccard{position:relative;display:block;grid-column:span 12;height:clamp(240px,30vw,420px);overflow:hidden;border-radius:.9rem;
   background:var(--warm-stone);color:inherit;text-decoration:none}
 @media(min-width:640px){.ccard.s5{grid-column:span 5}.ccard.s7{grid-column:span 7}}
+/* a featured collection on its own full-width row, a little taller */
+.ccard.ccard-wide{grid-column:1/-1;height:clamp(260px,36vw,520px)}
 .ccard img,.ccard .ph{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
 .ccard:hover img{transform:scale(1.04)}
 .ccard:hover{text-decoration:none}
